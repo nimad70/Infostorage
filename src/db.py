@@ -39,13 +39,19 @@ while check_answer_to_make_new_db:
             # Check if number is in the range of db_list length
             if db_list_num in range(1, len(db_list)):
                 check_given_number = False
+                break
             else:
                 print("Wrong number! plz enter number in a range of 1 to ", len(db_list))
-
+        
         print(db_list[(db_list_num-1)])
+        choosen_db = db_list[(db_list_num-1)]
+        print("choosen:", choosen_db)
+        db = client[choosen_db]
         break
 
     # Wrong answer to make db or use from the list question
     else:
         print("\n*Wrong answer, Enter again plz!")
 
+
+# make func and reaturn db
