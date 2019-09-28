@@ -1,3 +1,4 @@
+# Author: Nima Daryabar
 # Making a database using pymongo
 from pymongo import MongoClient
 
