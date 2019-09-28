@@ -58,3 +58,7 @@ def connect_db():
             print("\n*Wrong answer, Enter again plz!")
         
     return db
+
+
+if __name__ == "__main__":
+    conn = connect_db()
