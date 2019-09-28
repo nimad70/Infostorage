@@ -16,9 +16,12 @@ check_answer_to_make_new_db = True
 while check_answer_to_make_new_db:
     print()
     answer_new_or_list = input("Making new datbase(n) or Using one from list(l) - (n/l): ")
+    # Making a new databse
     if answer_new_or_list == 'n':
-        print(answer_new_or_list)
+        db_name_user = input('\nGive a database name to create one: ')
+        print(db_name_user)
         break
+    # Using from old databases in the list
     elif answer_new_or_list == 'l':
         print(answer_new_or_list)
         break
@@ -27,7 +30,7 @@ while check_answer_to_make_new_db:
 # print()
 # print(db_list[1])
 
-# db_name = input('Give database name: ')
+# 
 
 # Create database
 # db = client['reg_info_db']
