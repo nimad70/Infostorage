@@ -16,6 +16,7 @@ check_answer_to_make_new_db = True
 while check_answer_to_make_new_db:
     print()
     answer_new_or_list = input("Making new datbase(n) or Using one from list(l) - (n/l): ")
+    
     # Making a new databse
     if answer_new_or_list == 'n':
         # Getting database name from user
@@ -23,15 +24,28 @@ while check_answer_to_make_new_db:
         print(db_name_user)
         # Create database
         db = client['reg_info_db']
+        print("\nDatabase is created")
         break
-    # Using from old databases in the list
+    
+    # Using db from old databases in the list
     elif answer_new_or_list == 'l':
         print(answer_new_or_list)
+        
+        # Check if user enters correct number
+        check_given_number = True
+        while check_given_number:
+            # Getting number from user
+            db_list_num = int(input("\nEnter database list number: "))
+            # Check if number is in the range of db_list length
+            if db_list_num in range(1, len(db_list)):
+                check_given_number = False
+            else:
+                print("Wrong number! plz enter number in a range of 1 to ", len(db_list))
+
+        print(db_list[(db_list_num-1)])
         break
+
+    # Wrong answer to make db or use from the list question
     else:
         print("\n*Wrong answer, Enter again plz!")
-
-
-# print()
-# print(db_list[1])
 
