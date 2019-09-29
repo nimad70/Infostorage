@@ -9,3 +9,7 @@ def retrieve_data(db):
 
 def import_data(db):
     pass
+
+
+if __name__ == "__main__":
+    print("nima")
