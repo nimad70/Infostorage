@@ -29,6 +29,7 @@ def connect_db():
             # Create database
             db = client['reg_info_db']
             print("\nDatabase is created")
+            check_answer_to_make_new_db = False
             break
         
         # Using db from old databases in the list
@@ -51,6 +52,7 @@ def connect_db():
             choosen_db = db_list[(db_list_num-1)]
             print("choosen:", choosen_db)
             db = client[choosen_db]
+            check_answer_to_make_new_db = False
             break
 
         # Wrong answer to make db or use from the list question
