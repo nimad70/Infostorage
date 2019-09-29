@@ -15,7 +15,8 @@ def connect_db():
     for counter, dbname in enumerate(db_list, 1):
         print(counter, '.', dbname)
 
-    # Asking user to make a new db or used one from the list 
+    # Asking user to make a new db or used one from the list
+    new_db = False
     check_answer_to_make_new_db = True
     while check_answer_to_make_new_db:
         print()
@@ -29,6 +30,7 @@ def connect_db():
             # Create database
             db = client['reg_info_db']
             print("\nDatabase is created")
+            new_db = True
             check_answer_to_make_new_db = False
             break
         
@@ -59,7 +61,7 @@ def connect_db():
         else:
             print("\n*Wrong answer, Enter again plz!")
         
-    return db
+    return db, new_db
 
 
 if __name__ == "__main__":
