@@ -1,6 +1,7 @@
 # Author: Nima Daryabar aka nmdr
 # Keeping usernames and password
 from db import connect_db
+from collections import *
 
 
 # connect to database or create one
@@ -22,10 +23,17 @@ while check_retrieve_import:
         # If there is data in database
         else:
             print(answer_retrieve_import)
+            
+
+            check_retrieve_import = False
 
     # Import data into database
     elif answer_retrieve_import == 'i':
         print(answer_retrieve_import)
+
+
+
+        check_retrieve_import = False
         pass
     
     # Wrong answer to retrieve(r) or import(i)
