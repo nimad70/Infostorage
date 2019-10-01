@@ -48,14 +48,30 @@ while check_retrieve_import:
         # Website or application name
         web_app_name = input("Enter website or application's name: ")
         username_ = input("Enter username: ")
-        password_ = input("Enter password")
+        password_ = input("Enter password: ")
 
+        # Check if user enter correct answer to y/n question about comments
+        comments_check_answer = True
+        while comments_check_answer:
+            
+            # Check if user has any comments about his info
+            is_comments = input("Have any comments(y/n)? ")
 
-
-        # get username
-        # get password
-        # get web name
-        # get user comments
+            # Yes
+            if is_comments == 'y':
+                comments = input("Enter Your comments:  ")
+                comments_check_answer = False
+                break
+            
+            # No
+            elif is_comments == 'n':
+                print("Good!")
+                comments_check_answer = False
+                break
+            
+            # Wrong answer
+            else:
+                print("\nWrong answer to y/n! Enter again plz.")
 
 
 
