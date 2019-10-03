@@ -74,7 +74,7 @@ def validate_info(val, symb):
         print(val)
         if not(not(val and not val.isspace())):
             if (len(val) > 50):
-                print("More than 50 letters!")
+                print("\n-> More than 50 letters!")
             else:
                 is_valid = True
         else:
@@ -156,6 +156,8 @@ while check_retrieve_import:
 
         # move above code to get_info() func
         # impor_func(validated_data)
+
+        # show user their info and ask them if they want to save it or not based on what they enter
 
 
 
