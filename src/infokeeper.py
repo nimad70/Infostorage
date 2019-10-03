@@ -69,14 +69,39 @@ def get_info(item_count):
 def validate_info(val, symb):
     is_valid = False
 
+    # Checking if app/website's name is coorect
     if symb == 'app':
-        pass
-    elif symb == 'usnm':
-        pass
-    elif symb == 'pass':
-        pass
+        print(val)
+        if not(not(val and not val.isspace())):
+            if (len(val) > 50):
+                print("More than 50 letters!")
+            else:
+                is_valid = True
+        else:
+            print("it should not leave empty!")
+    
+    # username and password are the same in validation
+    elif symb == 'usnm_pass':
+        print(val)
+        if not(not(val and not val.isspace())):
+            if (len(val) > 30):
+                print("More than 50 letters!")
+            else:
+                is_valid = True
+        else:
+            print("it should not leave empty!")
+    
+    # comments - first we should check if there is comments 
     elif symb == 'cmnt':
-        pass
+        print(val)
+        if not(not(val and not val.isspace())):
+            if (len(val) > 150):
+                print("More than 50 letters!")
+            else:
+                is_valid = True
+        else:
+            print("it should not leave empty!")
+
     else:
         print("Wrong symbol! and that's not ypur fault!")
 
@@ -92,8 +117,8 @@ print("\n", db, "\n", new_database)
 # Check if user enters the correct letter for retrieving or importing data from/into database
 check_retrieve_import = True
 while check_retrieve_import:
-    answer_retrieve_import = input("\nRetrieve(r) data from database or"
-        "Import(i) new data into the database(r/i): ")
+    answer_retrieve_import = input("\nRetrieve(r) or"
+        " Import(i) data from/into the database(r/i): ")
 
     # Retrieving data from database
     if answer_retrieve_import == 'r':
