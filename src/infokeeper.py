@@ -14,12 +14,19 @@ print("\n", db, "\n", new_database)
 """
 
 
+""" Check if user wants to continue retrieving or importing data 
+     _to database or end the program 
+"""
 check_to_continue_retrieve_import = True
 while check_to_continue_retrieve_import:
 
-    # Check if user enters the correct letter for retrieving or importing data from/into database
+    """ Check if user enters the correct letter 
+         _for retrieving or importing data from/into database
+    """
     check_retrieve_import = True
     while check_retrieve_import:
+
+        # Asking about retrieving or importing data
         answer_retrieve_import = input("\nRetrieve(r) or"
             " Import(i) data from/into the database(r/i): ")
 
@@ -44,10 +51,12 @@ while check_to_continue_retrieve_import:
         elif answer_retrieve_import == 'i':
             print(answer_retrieve_import)
             
-            # Check if user enters anything except numbers
+            """ Check if user enters anything except numbers(integer) 
+                 _about number of items they want to import to database"""
             counter_check = True
             while counter_check:
                 try:
+                    # Getting number of items
                     count = int(input("How many items do you want to enter: "))
                 except ValueError:
                     print("-> Wrong! Enter a number!\n")
@@ -58,11 +67,17 @@ while check_to_continue_retrieve_import:
             print(info_list)
             
 
+            """ Asking about if user is sure about data 
+                 _which is going to import to the choosen database
+            """
             check_to_import = True
             while check_to_import:
                 answer_to_import = input("\nare you sure you want to import data to database(y/n)? ")
                 if answer_to_import == 'y':
                     print("okay")
+
+                    # Insert data to the database
+
 
                     
                     check_to_import = False
@@ -73,12 +88,12 @@ while check_to_continue_retrieve_import:
                     print("*Wrong answer, Try again!")
 
             check_retrieve_import = False
-            # pass
         
         # Wrong answer to retrieve(r) or import(i)
         else:
             print("\n*Wrong answer, Enter again plz!")
 
+    # Checking about retrieving or importing data section
     check_y_n = True
     while check_y_n:
         check_answer = input("\n> start retrieving or importing data again(y/n)? ")
