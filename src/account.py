@@ -1,7 +1,7 @@
 # Author: Nima Daryabar
-# Get and validate user's account info
+# Get and validate user's account information
 
-""" Get user's account info and 
+""" Getting user's account information and 
     return his username, password, comments and app name
 """
 def get_info(item_count):
@@ -15,22 +15,22 @@ def get_info(item_count):
         print("\nEnter info num.", counter_+1)
         # Get info from user about his account
 
-        # Website/app's name
+        # Website/app name
         """ Turn is_validated from to False for every step
             cause for other info except 'app' it will still be 'True'
             and if it doesn't turn to 'False' it will not check other whiles
         """
         is_validated = False
-        # Website/App's name validation
+        # Website/App name validation
         while not is_validated:
-            app_name = input("\nEnter website or application's name: ")
+            app_name = input("\nEnter website or application name: ")
             info_sympol = 'app'
             if validate_info(app_name, info_sympol):
                 is_validated = True
             else:
                 print("Plz try again!\n")
 
-        # User account's Username
+        # User account Username
         is_validated = False
         # Username validation
         while not is_validated:
@@ -42,7 +42,7 @@ def get_info(item_count):
                 print("Plz try again!\n")
 
         
-        # User account's Password
+        # User account Password
         is_validated = False
         # Password validation
         while not is_validated:
@@ -54,7 +54,7 @@ def get_info(item_count):
                 print("Plz try again!\n")
 
 
-        # User's comments about their info
+        # User's comments about their account information
         comments = ""
 
         # Check if user enter correct answer to y/n question about comments
@@ -97,7 +97,7 @@ def get_info(item_count):
 
 
 # Validation section
-""" Validating user's account info
+""" Validating user's account information
     Getting account information value(username or password or ...) 
     and a symbol as an abbreviation to check which one is which
     and return True/False as it's validated data or not
@@ -105,7 +105,7 @@ def get_info(item_count):
 def validate_info(val, symb):
     is_valid = False
 
-    # Checking if app/website's name is coorect
+    # Checking if app/website name is correct
     if symb == 'app':
         print(val)
         if not(not(val and not val.isspace())):
