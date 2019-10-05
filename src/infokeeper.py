@@ -183,7 +183,17 @@ while check_retrieve_import:
     # Import data into database
     elif answer_retrieve_import == 'i':
         print(answer_retrieve_import)
-        count = int(input("How many items do you want to enter: "))
+        
+        # Check if user enters anything except numbers
+        counter_check = True
+        while counter_check:
+            try:
+                count = int(input("How many items do you want to enter: "))
+            except ValueError:
+                print("-> Wrong! Enter a number!\n")
+            else:
+                counter_check = False
+        
         info_list = get_info(count)
         print(info_list)
 
