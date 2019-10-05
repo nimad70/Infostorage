@@ -8,10 +8,8 @@ from account import get_info, validate_info
 
 
 # connect to database or create one
-"""
 db, new_database = connect_db()
 print("\n", db, "\n", new_database)
-"""
 
 
 """ Check if user wants to continue retrieving or importing data 
