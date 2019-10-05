@@ -56,10 +56,24 @@ while check_to_continue_retrieve_import:
             
             info_list = get_info(count)
             print(info_list)
+            
 
+            check_to_import = True
+            while check_to_import:
+                answer_to_import = input("\nare you sure you want to import data to database(y/n)? ")
+                if answer_to_import == 'y':
+                    print("okay")
+
+                    
+                    check_to_import = False
+                elif answer_to_import == 'n':
+                    print("Good!")
+                    check_to_import = False
+                else:
+                    print("*Wrong answer, Try again!")
 
             check_retrieve_import = False
-            pass
+            # pass
         
         # Wrong answer to retrieve(r) or import(i)
         else:
