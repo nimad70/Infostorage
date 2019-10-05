@@ -13,13 +13,19 @@ def get_info(item_count):
     account_info = []
 
     info_sympol = ""
-    is_validated = False
-
+    
     counter_ = 0
     while counter_ != item_count:
         print("\nEnter info num.", counter_+1)
         # Get info from user about his account
 
+        # Website/app's name
+        """ Turn is_validated from to False for every step
+            cause for other info except 'app' it will still be 'True'
+            and if it doesn't turn to 'False' it will not check other whiles
+        """
+        is_validated = False
+        # Website/App's name validation
         while not is_validated:
             app_name = input("\nEnter website or application's name: ")
             info_sympol = 'app'
@@ -27,9 +33,32 @@ def get_info(item_count):
                 is_validated = True
             else:
                 print("Plz try again!\n")
-            
-        username_ = input("Enter username: ")
-        password_ = input("Enter password: ")
+
+        # User account's Username
+        is_validated = False
+        # Username validation
+        while not is_validated:
+            username_ = input("Enter username: ")
+            info_sympol = 'usnm_pass'
+            if validate_info(username_, info_sympol):
+                is_validated = True
+            else:
+                print("Plz try again!\n")
+
+        
+        # User account's Password
+        is_validated = False
+        # Password validation
+        while not is_validated:
+            password_ = input("Enter password: ")
+            info_sympol = 'usnm_pass'
+            if validate_info(password_, info_sympol):
+                is_validated = True
+            else:
+                print("Plz try again!\n")
+
+
+        # User's comments about their info
         comments = ""
 
         # Check if user enter correct answer to y/n question about comments
@@ -41,7 +70,16 @@ def get_info(item_count):
 
             # Yes
             if has_comments == 'y':
-                comments = input("Enter Your comments:  ")
+                # Comment validation
+                is_validated = False
+                while not is_validated:
+                    comments = input("Enter Your comments:  ")
+                    info_sympol = 'cmnt'
+                    if validate_info(comments, info_sympol):
+                        is_validated = True
+                    else:
+                        print("Plz try again!\n")
+                
                 comments_check_answer = False
                 break
             
@@ -59,6 +97,7 @@ def get_info(item_count):
         counter_ += 1
 
     return account_info
+
 
 
 """ Validating user's account info
@@ -85,7 +124,7 @@ def validate_info(val, symb):
         print(val)
         if not(not(val and not val.isspace())):
             if (len(val) > 30):
-                print("More than 50 letters!")
+                print("More than 30 letters!")
             else:
                 is_valid = True
         else:
@@ -96,7 +135,7 @@ def validate_info(val, symb):
         print(val)
         if not(not(val and not val.isspace())):
             if (len(val) > 150):
-                print("More than 50 letters!")
+                print("More than 150 letters!")
             else:
                 is_valid = True
         else:
