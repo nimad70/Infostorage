@@ -3,8 +3,27 @@
 import pymongo
 
 
-def insert_data(db):
-    pass
+""" Insert user account information into database
+     and return a boolean as the result
+"""
+def insert_data(db, account_info, list_count):
+    print("\n db: ", db)
+    print("\n acc: ", account_info)
+    print("\nlen: ", len(account_info))
+    print("\n coun: ", list_count)
+
+    account_list_dict = []
+
+    key_name_list = ['appname', 'username', 'password', 'comment']
+    for value_item in account_info:
+        print("\n", value_item)
+        account_dict = dict(zip(key_name_list, value_item))
+        print("single dict: ", account_dict)
+        account_list_dict.append(account_dict)
+
+    print("\n\ndict list: ", account_list_dict)
+
+    
 
 
 
