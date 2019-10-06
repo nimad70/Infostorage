@@ -75,7 +75,7 @@ def connect_db():
     return db, new_db
 
 
-
+"""
 def create_db():
     pass
 
@@ -83,15 +83,7 @@ def create_db():
 
 def retrieve_db():
     pass
-
-
-
-
-
-
-
-
-
+"""
 
 
 if __name__ == "__main__":
