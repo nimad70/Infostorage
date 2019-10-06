@@ -19,14 +19,23 @@ def connect_db():
     new_db = False
     check_answer_to_make_new_db = True
     while check_answer_to_make_new_db:
-        print()
-        answer_new_or_list = input("Making new datbase(n) or Using one from list(l) - (n/l): ")
+        answer_new_or_list = input("\nMaking new datbase(n) or Using one from list(l) - (n/l): ")
         
         # Making a new databse
         if answer_new_or_list == 'n':
             # Getting database name from user
             db_name_user = input('\nGive a database name to create one: ')
             print(db_name_user)
+
+
+            if db_name_user in db_list:
+                print("\nThe database is already created")
+                pass
+            else:
+                pass
+
+
+
             # Create database
             # db = client['reg_info_db']
             db = client[db_name_user]
@@ -63,6 +72,25 @@ def connect_db():
             print("\n*Wrong answer, Enter again plz!")
         
     return db, new_db
+
+
+
+def create_db():
+    pass
+
+
+
+def retrieve_db():
+    pass
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
