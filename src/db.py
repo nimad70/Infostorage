@@ -23,26 +23,27 @@ def connect_db():
         
         # Making a new databse
         if answer_new_or_list == 'n':
-            # Getting database name from user
-            db_name_user = input('\nGive a database name to create one: ')
-            print(db_name_user)
 
+            # Check if name exists or not
+            db_name_exists = True
+            while(db_name_exists):
+                # Getting database name from user
+                db_name_user = input('\nGive a database name to create one: ')
+                print(db_name_user)
 
-            if db_name_user in db_list:
-                print("\nThe database is already created")
-                pass
-            else:
-                pass
-
-
-
-            # Create database
-            # db = client['reg_info_db']
-            db = client[db_name_user]
-            print("\nDatabase is created")
-            new_db = True
-            check_answer_to_make_new_db = False
-            break
+                # if db name exists
+                if db_name_user in db_list:
+                    print("\n-> The database is already created! Enter New name plz!")
+                else:
+                    # Create database
+                    # db = client['reg_info_db']
+                    db = client[db_name_user]
+                    print("\nDatabase is created")
+                    db_name_exists = False
+                    new_db = True
+                    check_answer_to_make_new_db = False
+                    break
+            
         
         # Using db from old databases in the list
         elif answer_new_or_list == 'l':
