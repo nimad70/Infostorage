@@ -3,7 +3,7 @@
 from db import connect_db
 import datetime
 from account import get_info, validate_info
-# from collections import *
+from db_collections import insert_data
 
 
 
