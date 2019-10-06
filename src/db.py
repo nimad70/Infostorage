@@ -10,7 +10,7 @@ def connect_db():
     client = MongoClient('localhost', 27017)
 
     # Show all available databases
-    print("databases list:\n")
+    print("\ndatabases list:\n")
     db_list = client.list_database_names()
     for counter, dbname in enumerate(db_list, 1):
         print(counter, '.', dbname)
@@ -28,7 +28,8 @@ def connect_db():
             db_name_user = input('\nGive a database name to create one: ')
             print(db_name_user)
             # Create database
-            db = client['reg_info_db']
+            # db = client['reg_info_db']
+            db = client[db_name_user]
             print("\nDatabase is created")
             new_db = True
             check_answer_to_make_new_db = False
