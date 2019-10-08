@@ -4,23 +4,44 @@ import pymongo
 
 
 # show a list of collections or make a new one
-def collection_list(db):
+# coll_list_db is db
+def collection_list(coll_list_db):
     print("\n List of collections:")
 
-    collection_list = db.list_collection_names()
+    collectn_list = coll_list_db.list_collection_names()
 
     # Check if collection list is empty or not to show it to the user
-    if not collection_list:
+    if not collectn_list:
         print("\n-> There is no collection in database!")
     else:
-        for counter, collection_name in enumerate(collection_list, 1):
+        for counter, collection_name in enumerate(collectn_list, 1):
             print(counter, '.', collection_name)
     
-    return collection_list
+    return collectn_list
 
 
-def create_collection():
-    pass
+# create a collection
+# create_coll_db is db
+# collec_list from collection_list() returned value
+def create_collection(craete_coll_db, collec_list):
+    # Check if name exists or not
+    coll_name_exists = True
+    while(coll_name_exists):
+        # Get collection name from user
+        coll_name_user = input('\nGive a collection name to create one: ')
+        print(coll_name_user)
+
+        # if db name exists
+        if coll_name_user in collec_list:
+            print("\n-> The collection is already created! Enter New name plz!")
+
+        else:
+            # Create collection
+            coll = craete_coll_db[coll_name_user]
+            print("\nCollection is created")
+            coll_name_exists = False
+    
+    return coll
 
 
 
@@ -57,7 +78,8 @@ def insert_data(db, account_info, list_len):
     # create collection
     if not coll_list:
         # create one
-        create_collection()
+        new_coll = create_collection(db, coll_list)
+        print("\nnew coll: ", new_coll)
         pass
     else:
         pass
@@ -98,25 +120,7 @@ if __name__ == "__main__":
         # Making a new databse
         if answer_new_or_list == 'c':
 
-            # Check if name exists or not
-            coll_name_exists = True
-            while(coll_name_exists):
-                # Getting database name from user
-                coll_name_user = input('\nGive a collection name to create one: ')
-                print(coll_name_user)
-
-                # if db name exists
-                if coll_name_user in collection_list:
-                    print("\n-> The collection is already created! Enter New name plz!")
-
-                else:
-                    # Create collection
-                    coll = db[coll_name_user]
-                    print("\nCollection is created")
-                    coll_name_exists = False
-                    # new_db = True
-                    check_answer_to_make_new_coll = False
-                    break
+            
             
         
         # Using db from old databases in the list
