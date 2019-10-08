@@ -19,6 +19,11 @@ def collection_list(db):
     return collection_list
 
 
+def create_collection():
+    pass
+
+
+
 """ Insert user account information into database
      and return a boolean as the result
 """
@@ -52,7 +57,7 @@ def insert_data(db, account_info, list_len):
     # create collection
     if not coll_list:
         # create one
-        print("\nNO COLLECTION list")
+        create_collection()
         pass
     else:
         pass
