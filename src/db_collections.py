@@ -45,6 +45,11 @@ def create_collection(craete_coll_db, collec_list):
 
 
 
+def choose_collection():
+    pass
+
+
+
 """ Insert user account information into database
      and return a boolean as the result
 """
@@ -80,9 +85,8 @@ def insert_data(db, account_info, list_len):
         # create one
         new_coll = create_collection(db, coll_list)
         print("\nnew coll: ", new_coll)
-        pass
     else:
-        pass
+        choose_collection()
         #  choose from list
 
 
@@ -109,8 +113,8 @@ if __name__ == "__main__":
 
 
 
-"""
 
+"""
 # Asking user to make a new collection or used one from the list
     # new_db = False
     check_answer_to_make_new_coll = True
@@ -119,13 +123,14 @@ if __name__ == "__main__":
         
         # Making a new databse
         if answer_new_or_list == 'c':
-
-            
-            
         
         # Using db from old databases in the list
         elif answer_new_or_list == 'l':
             print(answer_new_or_list)
+
+
+
+     
             
             # Check if user enters correct number
             check_given_number = True
@@ -143,6 +148,13 @@ if __name__ == "__main__":
             choosen_coll = collection_list[(coll_list_num-1)]
             print("choosen:", choosen_coll)
             coll = db[choosen_coll]
+
+
+
+
+
+
+
             check_answer_to_make_new_coll = False
             break
 
