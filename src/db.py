@@ -44,8 +44,6 @@ def create_db(dbls_list, dbls_client):
             else:
                 print("\n -> only letters is allowed")
 
-        print(db_name_user)
-
         # if db name exists
         if db_name_user in dbls_list:
             print("\n-> The database is already created! Enter New name plz!")
@@ -82,7 +80,6 @@ def retrieve_db(rdb_client, rdb_db_list):
     
     print(rdb_db_list[(db_list_num-1)])
     choosen_db = rdb_db_list[(db_list_num-1)]
-    print("choosen:", choosen_db)
     retrieved_db = rdb_client[choosen_db]
 
     return retrieved_db
@@ -99,11 +96,13 @@ def connect_db():
     # Turn to True if user makes a new database
     new_db = False
 
-    # Check if there is any db in db_list to make new database or not
+    # Check if there is any db in db_list to make a new database or not
     if not database_list:
         print("\nCreate a database to continue")
+        # Create a new database
         db, new_db = create_db(database_list, client)
     else:
+        # Ask user if they want to make a new db or use one from db
         check_answer_to_make_new_db = True
         while check_answer_to_make_new_db:
             answer_new_or_list = input("\nMaking new datbase(n) or Using one from list(l) - (n/l): ")
@@ -112,18 +111,13 @@ def connect_db():
             if answer_new_or_list == 'n':
                 # Create new database
                 db, new_db = create_db(database_list, client)
-                print(db, "\n", new_db)
-                
                 check_answer_to_make_new_db = False
                 break
                 
             # Using db from old databases in the list
             elif answer_new_or_list == 'l':
-                print(answer_new_or_list)
-                
-                # Choose from db list
+                # Choose one from db list
                 db = retrieve_db(client, database_list)
-
                 check_answer_to_make_new_db = False
                 break
 
@@ -132,7 +126,6 @@ def connect_db():
                 print("\n*Wrong answer, Enter again plz!")
         
     return db, new_db
-
 
 
 if __name__ == "__main__":
