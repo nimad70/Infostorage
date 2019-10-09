@@ -51,10 +51,14 @@ while check_to_continue_retrieve_import:
             
             """ Check if user enters anything except numbers(integer) 
                  _about number of items they want to import to database"""
+
+# use digit_check from regcheck here!
+
+
             counter_check = True
             while counter_check:
                 try:
-                    # Getting number of items
+                    # Get number of items
                     count = int(input("How many items do you want to enter: "))
                 except ValueError:
                     print("-> Wrong! Enter a number!\n")
@@ -74,7 +78,9 @@ while check_to_continue_retrieve_import:
                 if answer_to_import == 'y':
                     print("okay")
 
-                    # Insert data to the database
+                    # insert data into database
+                    # ins_result = insert_data(db, info_list, count)
+                    insert_data(db, info_list, count)
 
 
                     
