@@ -1,6 +1,7 @@
 # Author: Nima Daryabar
 import re
 
+
 # Check names for being only letters
 # True False as return value
 def check_only_letters(name):
