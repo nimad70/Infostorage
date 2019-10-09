@@ -1,6 +1,17 @@
 # Author: Nima Daryabar
 # Making a database using pymongo
 from pymongo import MongoClient
+import re
+
+
+
+#  you are in db_dev .. do some changes in here
+
+#  regex : ^([a-zA-Z]+)$
+
+
+
+
 
 
 # Connecting to the database
@@ -55,7 +66,7 @@ def connect_db():
                 # Getting number from user
                 db_list_num = int(input("\nEnter database list number: "))
                 # Check if number is in the range of db_list length
-                if db_list_num in range(1, len(db_list)):
+                if db_list_num in range((len(db_list)+1)):
                     check_given_number = False
                     break
                 else:
