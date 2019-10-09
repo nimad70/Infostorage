@@ -21,6 +21,16 @@ def connect_db():
 
     # Asking user to make a new db or used one from the list
     new_db = False
+
+    if not database_list:
+        print("\nCreate a database to continue")
+        create_db()
+    else:
+        pass
+
+
+
+
     check_answer_to_make_new_db = True
     while check_answer_to_make_new_db:
         answer_new_or_list = input("\nMaking new datbase(n) or Using one from list(l) - (n/l): ")
@@ -96,12 +106,13 @@ def db_list(db_client):
     
     return db_list
 
-"""
+
+# Create new datbase
 def create_db():
     pass
 
 
-
+"""
 def retrieve_db():
     pass
 """
