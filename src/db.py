@@ -4,11 +4,6 @@ from pymongo import MongoClient
 import re
 
 
-#  you are in db_dev .. do some changes in here
-#  regex : ^([a-zA-Z]+)$
-
-
-
 # Show databases list
 # pass 'client' from connect_db() to module as 'db_client'
 # list of databases(db_list) as return value
@@ -36,7 +31,14 @@ def create_db(dbls_list, dbls_client):
     db_name_exists = True
     while(db_name_exists):
         # Getting database name from user
-        db_name_user = input('\nGive a database name to create one: ')
+        checking_db_name = True # Check if name is only letters
+        while checking_db_name:
+            db_name_user = input('\nGive a database name to create one: ')
+            if check_db_name(db_name_user):
+                checking_db_name = False
+            else:
+                print("\n -> only letters is allowed")
+
         print(db_name_user)
 
         # if db name exists
@@ -51,19 +53,17 @@ def create_db(dbls_list, dbls_client):
     
     return created_db, is_new_db
 
-\
-
-
-
 
 # Check db name for just letters allowed
 # True False as return value
 def check_db_name(db_name):
-    pass
-
-
-
-
+    is_db_name = True
+    # only letters regex
+    name_reg = re.compile('^([a-zA-Z]+)$')
+    if not re.match(name_reg, db_name):
+        is_db_name = False
+    
+    return is_db_name
 
 
 # Connecting to the database
