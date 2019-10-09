@@ -51,6 +51,19 @@ def create_db(dbls_list, dbls_client):
     
     return created_db, is_new_db
 
+\
+
+
+
+
+# Check db name for just letters allowed
+# True False as return value
+def check_db_name(db_name):
+    pass
+
+
+
+
 
 
 # Connecting to the database
