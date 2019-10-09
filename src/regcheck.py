@@ -7,8 +7,8 @@ import re
 def check_only_letters(name):
     is_name = True
     # only letters regex
-    name_reg = re.compile('^([a-zA-Z]+)$')
-    if not re.match(name_reg, name):
+    name_pattern = re.compile(r"^([a-zA-Z]+)$")
+    if not re.match(name_pattern, name):
         is_name = False
     
     return is_name
@@ -19,8 +19,23 @@ def check_only_letters(name):
 def check_only_digits(numb):
     is_digit = True
     # only letters regex
-    digit_reg = re.compile('^([\d]+)$')
-    if not re.match(digit_reg, numb):
+    digit_pattern = re.compile(r"^([\d]+)$")
+    if not re.match(digit_pattern, numb):
         is_digit = False
     
     return is_digit
+
+
+# Check and get user's given number
+def digit_check():
+    # Check if number is only digits
+    digit_check = True
+    while digit_check:
+        try:
+            # Get number from user
+            num = int(input("\nEnter database list number: "))
+        except ValueError:
+            print("-> Wrong! Enter a number!\n")
+        else:
+            digit_check = False
+    return num
