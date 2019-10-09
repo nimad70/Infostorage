@@ -4,6 +4,7 @@ from db import connect_db
 import datetime
 from account import get_info, validate_info
 from db_collections import insert_data
+from regcheck import digit_check
 
 
 
