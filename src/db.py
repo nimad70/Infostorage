@@ -81,12 +81,18 @@ def connect_db():
 
 # Show databases list
 # pass 'client' from connect_db() to module as 'db_client'
+# list of databases(db_list) as return value
 def db_list(db_client):
     # Show all available databases
     print("\ndatabases list:\n")
     db_list = db_client.list_database_names()
-    for counter, dbname in enumerate(db_list, 1):
-        print(counter, '.', dbname)
+
+    # Check if collection list is empty or not to show it to the user
+    if not db_list:
+        print("\n-> There is no database to show!")
+    else:
+        for counter, dbname in enumerate(db_list, 1):
+            print(counter, '.', dbname)
     
     return db_list
 
