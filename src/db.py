@@ -2,6 +2,7 @@
 # Making a database using pymongo
 from pymongo import MongoClient
 import re
+from regcheck import check_only_letters
 
 
 # Show databases list
@@ -34,7 +35,7 @@ def create_db(dbls_list, dbls_client):
         checking_db_name = True # Check if name is only letters
         while checking_db_name:
             db_name_user = input('\nGive a database name to create one: ')
-            if check_db_name(db_name_user):
+            if check_only_letters(db_name_user):
                 checking_db_name = False
             else:
                 print("\n -> only letters is allowed")
@@ -52,18 +53,6 @@ def create_db(dbls_list, dbls_client):
             db_name_exists = False
     
     return created_db, is_new_db
-
-
-# Check db name for just letters allowed
-# True False as return value
-def check_db_name(db_name):
-    is_db_name = True
-    # only letters regex
-    name_reg = re.compile('^([a-zA-Z]+)$')
-    if not re.match(name_reg, db_name):
-        is_db_name = False
-    
-    return is_db_name
 
 
 # Connecting to the database
