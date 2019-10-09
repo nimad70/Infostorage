@@ -14,15 +14,10 @@ import re
 
 # Connecting to the database
 def connect_db():
-
     # Running Mongod instance
     client = MongoClient('localhost', 27017)
 
-    # Show all available databases
-    print("\ndatabases list:\n")
-    db_list = client.list_database_names()
-    for counter, dbname in enumerate(db_list, 1):
-        print(counter, '.', dbname)
+    database_list = db_list(client)
 
     # Asking user to make a new db or used one from the list
     new_db = False
@@ -41,7 +36,7 @@ def connect_db():
                 print(db_name_user)
 
                 # if db name exists
-                if db_name_user in db_list:
+                if db_name_user in database_list:
                     print("\n-> The database is already created! Enter New name plz!")
                 else:
                     # Create database
@@ -64,14 +59,14 @@ def connect_db():
                 # Getting number from user
                 db_list_num = int(input("\nEnter database list number: "))
                 # Check if number is in the range of db_list length
-                if db_list_num in range((len(db_list)+1)):
+                if db_list_num in range((len(database_list)+1)):
                     check_given_number = False
                     break
                 else:
-                    print("Wrong number! plz enter number in a range of 1 to ", len(db_list))
+                    print("Wrong number! plz enter number in a range of 1 to ", len(database_list))
             
-            print(db_list[(db_list_num-1)])
-            choosen_db = db_list[(db_list_num-1)]
+            print(database_list[(db_list_num-1)])
+            choosen_db = database_list[(db_list_num-1)]
             print("choosen:", choosen_db)
             db = client[choosen_db]
             check_answer_to_make_new_db = False
@@ -84,8 +79,16 @@ def connect_db():
     return db, new_db
 
 
-def db_list():
-    pass
+# Show databases list
+# pass 'client' from connect_db() to module as 'db_client'
+def db_list(db_client):
+    # Show all available databases
+    print("\ndatabases list:\n")
+    db_list = db_client.list_database_names()
+    for counter, dbname in enumerate(db_list, 1):
+        print(counter, '.', dbname)
+    
+    return db_list
 
 """
 def create_db():
