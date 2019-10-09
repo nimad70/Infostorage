@@ -4,9 +4,7 @@ from pymongo import MongoClient
 import re
 
 
-
 #  you are in db_dev .. do some changes in here
-
 #  regex : ^([a-zA-Z]+)$
 
 
@@ -85,6 +83,9 @@ def connect_db():
         
     return db, new_db
 
+
+def db_list():
+    pass
 
 """
 def create_db():
