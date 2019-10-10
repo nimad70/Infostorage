@@ -1,75 +1,6 @@
 # Author: Nima Daryabar
 # Get and validate user's account information
 
-""" Getting user's account information and 
-    return his username, password, comments and app name
-"""
-def get_info(item_count):
-    print(item_count)
-    account_info = []
-
-    counter_ = 0
-    while counter_ != item_count:
-        print("\nEnter account info number.{}:".format(counter_+1))
-
-        # Get website/app name
-        app_name = get_app_name()
-        print("app name: {}".format(app_name))
-
-        # Get Username
-        username_ = get_username()
-        print(f"username: {username_}")
-        
-        # Get Password
-        password_ = get_password()
-        print(f"password: {password_}")
-
-
-
-        # Get comments
-        comments = get_comments()
-        print("comments: {}".format(comments))
-
-        # comments = ""
-        # # Check answer to y/n question about comments
-        # comments_check_answer = True
-        # while comments_check_answer:
-            
-        #     # Check if user has any comments about his info
-        #     has_comments = input("Have any comments(y/n)? ")
-
-        #     # Yes
-        #     if has_comments == 'y':
-        #         while True:
-        #             comments = input("\nEnter Your comments: ")
-        #             # Comment validation
-        #             if Comment_validation(comments):
-        #                 break
-        #             else:
-        #                 print("try again!\n")
-                
-        #         comments_check_answer = False
-        #         break
-            
-        #     # No
-        #     elif has_comments == 'n':
-        #         print("Good!")
-        #         comments_check_answer = False
-        #         break
-            
-        #     # Wrong answer
-        #     else:
-        #         print("\nWrong answer to y/n! Enter again plz.")
-
-
-        
-        
-        account_info.append((app_name, username_, password_, comments))
-        counter_ += 1
-
-    return account_info
-
-
 # get web/app name
 def get_app_name():
     # Check if web/app name is validated
@@ -116,7 +47,7 @@ def get_comments():
     comments_check_answer = True
     while comments_check_answer:
         # Check if user has any comments about his info
-        has_comments = input("Have any comments(y/n)? ")
+        has_comments = input("\nHave any comments(y/n)? ")
 
         # Answer == yes
         if has_comments == 'y':
@@ -146,8 +77,6 @@ def get_comments():
 # Return True if name is valid
 def appname_validation(app_val):
     is_app_valid = False
-    print(app_val)
-    
     # Check if name is left empty or user enters space instead of characters
     if not(not(app_val and not app_val.isspace())):
 
@@ -166,8 +95,6 @@ def appname_validation(app_val):
 # Return True if username is valid
 def username_validation(usn_val):
     is_usn_valid = False
-    print(usn_val)
-    
     # Check if username is left empty or user enters space instead of characters
     if not(not(usn_val and not usn_val.isspace())):
 
@@ -186,8 +113,6 @@ def username_validation(usn_val):
 # Return True if Password is valid
 def password_validation(pass_val):
     is_pass_valid = False
-    print(pass_val)
-    
     # Check if username is left empty or user enters space instead of characters
     if not(not(pass_val and not pass_val.isspace())):
 
@@ -206,8 +131,6 @@ def password_validation(pass_val):
 # Return True if Comment is valid
 def Comment_validation(cmnt_val):
     is_comnt_valid = False
-    print(cmnt_val)
-    
     # Check if comment is left empty or user enters space instead of characters
     if not(not(cmnt_val and not cmnt_val.isspace())):
 
@@ -220,6 +143,38 @@ def Comment_validation(cmnt_val):
         print("-> it should not leave empty,", end=' ')
     
     return is_comnt_valid
+
+
+# Get user account information
+# return info as a list: {[app name, username, password, comments]}
+def get_info(item_count):
+    print(item_count)
+    account_info = []
+
+    counter_ = 0
+    while counter_ != item_count:
+        print("\nEnter account info number.{}:".format(counter_+1))
+
+        # Get website/app name
+        app_name = get_app_name()
+        print("app name: {}".format(app_name))
+
+        # Get Username
+        username_ = get_username()
+        print(f"username: {username_}")
+        
+        # Get Password
+        password_ = get_password()
+        print(f"password: {password_}")
+
+        # Get comments
+        comments = get_comments()
+        print("comments: {}".format(comments))
+
+        account_info.append((app_name, username_, password_, comments))
+        counter_ += 1
+
+    return account_info
 
 
 if __name__ == "__main__":
