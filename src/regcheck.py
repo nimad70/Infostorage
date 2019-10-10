@@ -33,9 +33,9 @@ def digit_check():
     while digit_check:
         try:
             # Get number from user
-            num = int(input("\nEnter database list number: "))
+            num = int(input())
         except ValueError:
-            print("-> Wrong! Enter a number!\n")
+            print("-> Wrong! Enter a number please:", end=' ')
         else:
             digit_check = False
     return num
