@@ -31,22 +31,15 @@ def get_info(item_count):
                 break
             else:
                 print("try again!\n")
-
-
-
-
-
         
-        # User account Password
-        is_validated = False
-        # Password validation
-        while not is_validated:
-            password_ = input("Enter password: ")
-            info_sympol = 'usnm_pass'
-            if validate_info(password_, info_sympol):
-                is_validated = True
+        # Get Password
+        while True:
+            password_ = input("\nEnter password: ")
+            # Password validation
+            if password_validation(password_):
+                break
             else:
-                print("Plz try again!\n")
+                print("try again!\n")
 
 
         # User's comments about their account information
