@@ -66,6 +66,7 @@ def retrieve_db(rdb_client, rdb_db_list):
     while check_given_number:
 
         # Check and get user's given number
+        print("\nEnter database list number:", end=' ')
         db_list_num = digit_check()
         
         # Check if number is in the range of db_list length
