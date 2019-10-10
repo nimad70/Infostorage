@@ -70,7 +70,7 @@ def get_info(item_count):
 
 # get web/app name
 def get_app_name():
-    # Check if it's validated
+    # Check if web/app name is validated
     while True:
         app_name_val = input("\nEnter website or application name: ")
         # Website/App name validation
@@ -83,7 +83,7 @@ def get_app_name():
 
 # Get username
 def get_username():
-    # Check if it's validated
+    # Check if username is validated
     while True:
         username_gu = input("\nEnter username: ")
         # Username validation
@@ -92,6 +92,19 @@ def get_username():
         else:
             print("try again!\n")
     return username_gu
+
+
+# Get password
+def get_password():
+    # Check if password is validated
+    while True:
+        password_gp = input("\nEnter password: ")
+        # Password validation
+        if password_validation(password_gp):
+            break
+        else:
+            print("try again!\n")
+    return password_gp
 
 
 # Website/app name Validation
