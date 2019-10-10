@@ -29,7 +29,7 @@ def get_info(item_count):
             else:
                 print("Plz try again!\n")
 
-        # User account Username
+        # Get Username
         is_validated = False
         # Username validation
         while not is_validated:
@@ -39,6 +39,8 @@ def get_info(item_count):
                 is_validated = True
             else:
                 print("Plz try again!\n")
+        
+        
 
         
         # User account Password
@@ -94,8 +96,26 @@ def get_info(item_count):
     return account_info
 
 
-def username_validation():
-    pass
+# Username Validation
+# Return True if username is valid
+def username_validation(usn_val):
+    is_valid = False
+    print(usn_val)
+    
+    # Check if username is left empty or user enters space instead of characters
+    if not(not(usn_val and not usn_val.isspace())):
+
+        # Check if username lenght is more than 30 letters
+        if (len(usn_val) > 30):
+            print("More than 30 letters!")
+        else:
+            is_valid = True
+    else:
+        print("it should not leave empty!")
+    
+    return is_valid
+
+
 
 
 
