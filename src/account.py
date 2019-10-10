@@ -14,13 +14,12 @@ def get_info(item_count):
     while counter_ != item_count:
         print("\nEnter account info number.{}:".format(counter_+1))
 
-        
-        # Website/app name
-        # Website/App name validation
+        # Get website/app name
         while True:
             app_name = input("\nEnter website or application name: ")
-            if validate_info(app_name, info_sympol):
-                is_validated = True
+            # Website/App name validation
+            if appname_validation(app_name):
+                break
             else:
                 print("try again!\n")
 
