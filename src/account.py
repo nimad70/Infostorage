@@ -26,37 +26,40 @@ def get_info(item_count):
 
 
 
-        # comments about account information
-        comments = ""
-        # Check answer to y/n question about comments
-        comments_check_answer = True
-        while comments_check_answer:
-            
-            # Check if user has any comments about his info
-            has_comments = input("Have any comments(y/n)? ")
+        # Get comments
+        comments = get_comments()
+        print("comments: {}".format(comments))
 
-            # Yes
-            if has_comments == 'y':
-                while True:
-                    comments = input("\nEnter Your comments: ")
-                    # Comment validation
-                    if Comment_validation(comments):
-                        break
-                    else:
-                        print("try again!\n")
+        # comments = ""
+        # # Check answer to y/n question about comments
+        # comments_check_answer = True
+        # while comments_check_answer:
+            
+        #     # Check if user has any comments about his info
+        #     has_comments = input("Have any comments(y/n)? ")
+
+        #     # Yes
+        #     if has_comments == 'y':
+        #         while True:
+        #             comments = input("\nEnter Your comments: ")
+        #             # Comment validation
+        #             if Comment_validation(comments):
+        #                 break
+        #             else:
+        #                 print("try again!\n")
                 
-                comments_check_answer = False
-                break
+        #         comments_check_answer = False
+        #         break
             
-            # No
-            elif has_comments == 'n':
-                print("Good!")
-                comments_check_answer = False
-                break
+        #     # No
+        #     elif has_comments == 'n':
+        #         print("Good!")
+        #         comments_check_answer = False
+        #         break
             
-            # Wrong answer
-            else:
-                print("\nWrong answer to y/n! Enter again plz.")
+        #     # Wrong answer
+        #     else:
+        #         print("\nWrong answer to y/n! Enter again plz.")
 
 
         
@@ -108,7 +111,7 @@ def get_password():
 
 # Get comments about account information
 def get_comments():
-    comments = ""
+    comments_gc = ""
     # Check answer to y/n question about comments
     comments_check_answer = True
     while comments_check_answer:
@@ -118,9 +121,9 @@ def get_comments():
         # Answer == yes
         if has_comments == 'y':
             while True:
-                comments = input("\nEnter Your comments: ")
+                comments_gc = input("\nEnter Your comments: ")
                 # Comment validation
-                if Comment_validation(comments):
+                if Comment_validation(comments_gc):
                     break
                 else:
                     print("try again!\n")     
@@ -136,7 +139,7 @@ def get_comments():
         # Wrong answer
         else:
             print("\nWrong answer to y/n! Enter again plz.")
-    return comments
+    return comments_gc
 
 
 # Website/app name Validation
