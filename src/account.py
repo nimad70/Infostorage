@@ -42,10 +42,9 @@ def get_info(item_count):
                 print("try again!\n")
 
 
-        # User's comments about their account information
+        # comments about account information
         comments = ""
-
-        # Check if user enter correct answer to y/n question about comments
+        # Check answer to y/n question about comments
         comments_check_answer = True
         while comments_check_answer:
             
@@ -54,15 +53,13 @@ def get_info(item_count):
 
             # Yes
             if has_comments == 'y':
-                # Comment validation
-                is_validated = False
-                while not is_validated:
-                    comments = input("Enter Your comments:  ")
-                    info_sympol = 'cmnt'
-                    if validate_info(comments, info_sympol):
-                        is_validated = True
+                while True:
+                    comments = input("\nEnter Your comments: ")
+                    # Comment validation
+                    if Comment_validation(comments):
+                        break
                     else:
-                        print("Plz try again!\n")
+                        print("try again!\n")
                 
                 comments_check_answer = False
                 break
