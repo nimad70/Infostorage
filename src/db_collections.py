@@ -43,39 +43,29 @@ def create_collection(craete_coll_db, collec_list):
     return coll
 
 
-
 # choose collection from list
 # choose_coll_db: db from insert_data()
 # choose_coll_list: collection list from collection_list()
 def choose_collection(choose_coll_db, choose_coll_list):
     # Check if user enters correct number
-    check_given_number = True
-    while check_given_number:
+    while True:
         # Getting number from user
         print("\nEnter collection list number: ", end=' ')
         coll_list_num = digit_check()
-        print("leeeeeenn: ",len(choose_coll_list)," num: ", coll_list_num)
 
         # Check if number is in the range of db_list length
         if coll_list_num == 0:
             print("Wrong number! again plz!")
             continue
         if coll_list_num in range(len(choose_coll_list)+1):
-            check_given_number = False
             break
         else:
             print("Wrong number! plz enter number in a range of 1 to ", len(choose_coll_list))
 
-    print(choose_coll_list[(coll_list_num-1)])
+    print(f"collection: {choose_coll_list[(coll_list_num-1)]}")
     choosen_coll = choose_coll_list[(coll_list_num-1)]  # Get collection name from collection list
-    print("choosen:", choosen_coll)
     ch_coll = choose_coll_db[choosen_coll] # Get collection from database
-    print("ch_coll: ", ch_coll)
-
     return ch_coll
-
-
-
 
 
 """ Insert user account information into database
