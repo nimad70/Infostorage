@@ -12,7 +12,20 @@ def get_info(item_count):
     
     counter_ = 0
     while counter_ != item_count:
-        print("\nEnter info num. {}".format(counter_+1))
+        print("\nEnter info number.{}:".format(counter_+1))
+
+
+
+        # Get Username
+        while True:
+            username_ = input("\nEnter username: ")
+            # Username validation
+            if username_validation(username_):
+                break
+            else:
+                print("try again!\n")
+
+
 
         # Website/app name
         """ Turn is_validated to False for every step
@@ -27,20 +40,21 @@ def get_info(item_count):
             if validate_info(app_name, info_sympol):
                 is_validated = True
             else:
-                print("Plz try again!\n")
+                print("try again!\n")
 
-        # Get Username
-        is_validated = False
-        # Username validation
-        while not is_validated:
-            username_ = input("Enter username: ")
-            info_sympol = 'usnm_pass'
-            if validate_info(username_, info_sympol):
-                is_validated = True
-            else:
-                print("Plz try again!\n")
+        # # Get Username
+        # is_validated = False
+        # # Username validation
+        # while not is_validated:
+        #     username_ = input("Enter username: ")
+        #     info_sympol = 'usnm_pass'
+        #     if validate_info(username_, info_sympol):
+        #         is_validated = True
+        #     else:
+        #         print("Plz try again!\n")
         
-        
+
+
 
         
         # User account Password
@@ -107,11 +121,11 @@ def username_validation(usn_val):
 
         # Check if username lenght is more than 30 letters
         if (len(usn_val) > 30):
-            print("More than 30 letters!")
+            print("More than 30 letters,", end=' ')
         else:
             is_valid = True
     else:
-        print("it should not leave empty!")
+        print("it should not leave empty,", end=' ')
     
     return is_valid
 
