@@ -143,6 +143,26 @@ def password_validation(pass_val):
     return is_pass_valid
 
 
+# Comment Validation
+# Return True if Comment is valid
+def Comment_validation(cmnt_val):
+    is_comnt_valid = False
+    print(cmnt_val)
+    
+    # Check if comment is left empty or user enters space instead of characters
+    if not(not(cmnt_val and not cmnt_val.isspace())):
+
+        # Check if comment lenght is more than 30 letters
+        if (len(cmnt_val) > 150):
+            print("-> More than 150 letters,", end=' ')
+        else:
+            is_comnt_valid = True
+    else:
+        print("-> it should not leave empty,", end=' ')
+    
+    return is_comnt_valid
+
+
 
 
 # Validation section
