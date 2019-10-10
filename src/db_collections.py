@@ -1,13 +1,13 @@
 # Author: Nima Daryabar
 # Insert or Retrive data into/from database
 import pymongo
+from regcheck import *
 
 
 # show a list of collections or make a new one
 # coll_list_db is db
 def collection_list(coll_list_db):
     print("\n List of collections:")
-
     collectn_list = coll_list_db.list_collection_names()
 
     # Check if collection list is empty or not to show it to the user
@@ -16,7 +16,6 @@ def collection_list(coll_list_db):
     else:
         for counter, collection_name in enumerate(collectn_list, 1):
             print(counter, '.', collection_name)
-    
     return collectn_list
 
 
@@ -26,7 +25,7 @@ def collection_list(coll_list_db):
 def create_collection(craete_coll_db, collec_list):
     # Check if name exists or not
     coll_name_exists = True
-    while(coll_name_exists):
+    while coll_name_exists:
         # Get collection name from user
         coll_name_user = input('\nGive a collection name to create one: ')
         print(coll_name_user)
@@ -45,8 +44,32 @@ def create_collection(craete_coll_db, collec_list):
 
 
 
-def choose_collection():
-    pass
+# choose collection from list
+# choose_coll_db is db
+# choose_coll_list from collection_list() returned value
+def choose_collection(choose_coll_db, choose_coll_list):
+    # Check if user enters correct number
+    check_given_number = True
+    while check_given_number:
+        # Getting number from user
+        print("\nEnter collection list number: ", end=' ')
+        coll_list_num = 
+        print("leeeeeenn: ",len(choose_coll_list)," num: ", coll_list_num)
+        # Check if number is in the range of db_list length
+        if coll_list_num in range(len(choose_coll_list)):
+            check_given_number = False
+            break
+        else:
+            print("Wrong number! plz enter number in a range of 1 to ", len(choose_coll_list))
+
+    print(choose_coll_list[(coll_list_num-1)])
+    choosen_coll = choose_coll_list[(coll_list_num-1)]
+    print("choosen:", choosen_coll)
+    ch_coll = choose_coll_db[choosen_coll]
+
+    return ch_coll
+
+
 
 
 
@@ -59,7 +82,7 @@ def insert_data(db, account_info, list_len):
     print("\nlen: ", len(account_info))
     print("\n coun: ", list_len)
 
-    # define a list of dictionaries if there is more than 1 item in account list
+    # List of dictionaries for more than 1 item in account list
     account_list_dict = []
 
     # Create a list of key names for key/value pair dictionary
@@ -70,7 +93,6 @@ def insert_data(db, account_info, list_len):
         print("\n", value_item)
         account_dict = dict(zip(key_name_list, value_item))
         print("single dict: ", account_dict)
-
         # If there is just one item, do not create a list of dictionaries 
         if list_len == 1:
             break
@@ -86,7 +108,8 @@ def insert_data(db, account_info, list_len):
         new_coll = create_collection(db, coll_list)
         print("\nnew coll: ", new_coll)
     else:
-        choose_collection()
+        choosen_collection = choose_collection(db, coll_list)
+        print("choosen coll: ", choosen_collection)
         #  choose from list
 
 
@@ -127,32 +150,6 @@ if __name__ == "__main__":
         # Using db from old databases in the list
         elif answer_new_or_list == 'l':
             print(answer_new_or_list)
-
-
-
-     
-            
-            # Check if user enters correct number
-            check_given_number = True
-            while check_given_number:
-                # Getting number from user
-                coll_list_num = int(input("\nEnter collection list number: "))
-                # Check if number is in the range of db_list length
-                if coll_list_num in range(1, len(collection_list)):
-                    check_given_number = False
-                    break
-                else:
-                    print("Wrong number! plz enter number in a range of 1 to ", len(collection_list))
-            
-            print(collection_list[(coll_list_num-1)])
-            choosen_coll = collection_list[(coll_list_num-1)]
-            print("choosen:", choosen_coll)
-            coll = db[choosen_coll]
-
-
-
-
-
 
 
             check_answer_to_make_new_coll = False
