@@ -8,8 +8,6 @@ def get_info(item_count):
     print(item_count)
     account_info = []
 
-    info_sympol = ""
-    
     counter_ = 0
     while counter_ != item_count:
         print("\nEnter account info number.{}:".format(counter_+1))
@@ -78,6 +76,21 @@ def get_info(item_count):
         counter_ += 1
 
     return account_info
+
+
+# get web/app name
+def get_app_name():
+    # Get website/app name
+    while True:
+        app_name = input("\nEnter website or application name: ")
+        # Website/App name validation
+        if appname_validation(app_name):
+            break
+        else:
+            print("try again!\n")
+    return app_name
+
+
 
 
 # Website/app name Validation
@@ -158,57 +171,6 @@ def Comment_validation(cmnt_val):
         print("-> it should not leave empty,", end=' ')
     
     return is_comnt_valid
-
-
-
-
-# Validation section
-""" Validating user's account information
-    Getting account information value(username or password or ...) 
-    and a symbol as an abbreviation to check which one is which
-    and return True/False as it's validated data or not
-"""
-def validate_info(val, symb):
-    is_valid = False
-
-    # Checking if app/website name is correct
-    if symb == 'app':
-        print(val)
-
-        if not(not(val and not val.isspace())):
-            if (len(val) > 50):
-                print("\n-> More than 50 letters!")
-            else:
-                is_valid = True
-        else:
-            print("it should not leave empty!")
-    
-    # username and password are the same in validation
-    elif symb == 'usnm_pass':
-        print(val)
-        if not(not(val and not val.isspace())):
-            if (len(val) > 30):
-                print("More than 30 letters!")
-            else:
-                is_valid = True
-        else:
-            print("it should not leave empty!")
-    
-    # comments - first we should check if there is comments 
-    elif symb == 'cmnt':
-        print(val)
-        if not(not(val and not val.isspace())):
-            if (len(val) > 150):
-                print("More than 150 letters!")
-            else:
-                is_valid = True
-        else:
-            print("it should not leave empty!")
-
-    else:
-        print("Wrong symbol! and that's not ypur fault!")
-
-    return is_valid
 
 
 if __name__ == "__main__":
