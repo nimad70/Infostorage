@@ -12,9 +12,17 @@ def get_info(item_count):
     
     counter_ = 0
     while counter_ != item_count:
-        print("\nEnter info number.{}:".format(counter_+1))
+        print("\nEnter account info number.{}:".format(counter_+1))
 
-
+        
+        # Website/app name
+        # Website/App name validation
+        while True:
+            app_name = input("\nEnter website or application name: ")
+            if validate_info(app_name, info_sympol):
+                is_validated = True
+            else:
+                print("try again!\n")
 
         # Get Username
         while True:
@@ -26,33 +34,6 @@ def get_info(item_count):
                 print("try again!\n")
 
 
-
-        # Website/app name
-        """ Turn is_validated to False for every step
-             _cause for other info except 'app' it will still be 'True'
-             _and if it doesn't turn to 'False' it will not check other whiles
-        """
-        is_validated = False
-        # Website/App name validation
-        while not is_validated:
-            app_name = input("\nEnter website or application name: ")
-            info_sympol = 'app'
-            if validate_info(app_name, info_sympol):
-                is_validated = True
-            else:
-                print("try again!\n")
-
-        # # Get Username
-        # is_validated = False
-        # # Username validation
-        # while not is_validated:
-        #     username_ = input("Enter username: ")
-        #     info_sympol = 'usnm_pass'
-        #     if validate_info(username_, info_sympol):
-        #         is_validated = True
-        #     else:
-        #         print("Plz try again!\n")
-        
 
 
 
@@ -113,7 +94,7 @@ def get_info(item_count):
 # Username Validation
 # Return True if username is valid
 def username_validation(usn_val):
-    is_valid = False
+    is_usn_valid = False
     print(usn_val)
     
     # Check if username is left empty or user enters space instead of characters
@@ -121,16 +102,33 @@ def username_validation(usn_val):
 
         # Check if username lenght is more than 30 letters
         if (len(usn_val) > 30):
-            print("More than 30 letters,", end=' ')
+            print("-> More than 30 letters,", end=' ')
         else:
-            is_valid = True
+            is_usn_valid = True
     else:
-        print("it should not leave empty,", end=' ')
+        print("-> it should not leave empty,", end=' ')
     
-    return is_valid
+    return is_usn_valid
 
 
+# Website/app name Validation
+# Return True if name is valid
+def appname_validation(app_val):
+    is_app_valid = False
+    print(app_val)
+    
+    # Check if name is left empty or user enters space instead of characters
+    if not(not(app_val and not app_val.isspace())):
 
+        # Check if name lenght is more than 50 letters
+        if (len(app_val) > 50):
+            print("-> More than 50 letters,", end=' ')
+        else:
+            is_app_valid = True
+    else:
+        print("-> it should not leave empty,", end=' ')
+    
+    return is_app_valid
 
 
 
