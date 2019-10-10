@@ -90,6 +90,26 @@ def get_info(item_count):
     return account_info
 
 
+# Website/app name Validation
+# Return True if name is valid
+def appname_validation(app_val):
+    is_app_valid = False
+    print(app_val)
+    
+    # Check if name is left empty or user enters space instead of characters
+    if not(not(app_val and not app_val.isspace())):
+
+        # Check if name lenght is more than 50 letters
+        if (len(app_val) > 50):
+            print("-> More than 50 letters,", end=' ')
+        else:
+            is_app_valid = True
+    else:
+        print("-> it should not leave empty,", end=' ')
+    
+    return is_app_valid
+
+
 # Username Validation
 # Return True if username is valid
 def username_validation(usn_val):
@@ -110,25 +130,24 @@ def username_validation(usn_val):
     return is_usn_valid
 
 
-# Website/app name Validation
-# Return True if name is valid
-def appname_validation(app_val):
-    is_app_valid = False
-    print(app_val)
+# Password Validation
+# Return True if Password is valid
+def password_validation(pass_val):
+    is_pass_valid = False
+    print(pass_val)
     
-    # Check if name is left empty or user enters space instead of characters
-    if not(not(app_val and not app_val.isspace())):
+    # Check if username is left empty or user enters space instead of characters
+    if not(not(pass_val and not pass_val.isspace())):
 
-        # Check if name lenght is more than 50 letters
-        if (len(app_val) > 50):
-            print("-> More than 50 letters,", end=' ')
+        # Check if username lenght is more than 30 letters
+        if (len(pass_val) > 30):
+            print("-> More than 30 letters,", end=' ')
         else:
-            is_app_valid = True
+            is_pass_valid = True
     else:
         print("-> it should not leave empty,", end=' ')
     
-    return is_app_valid
-
+    return is_pass_valid
 
 
 
