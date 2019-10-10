@@ -2,7 +2,7 @@
 # Storing applications username and password
 from db import connect_db
 import datetime
-from account import get_info, validate_info
+from account import get_info
 from db_collections import insert_data
 from regcheck import digit_check
 
@@ -50,18 +50,16 @@ while check_to_continue_retrieve_import:
         elif answer_retrieve_import == 'i':
             print(answer_retrieve_import)
             
-            """ Check if user enters anything except numbers(integer) 
-                 _about number of items they want to import to database"""
+            # Get number of items they want to import into the database
             print("\nHow many items do you want to enter:", end=' ')
+            # Check only digits are entered
             count = digit_check()
             
             info_list = get_info(count)
             print(info_list)
             
 
-            """ Asking about if user is sure about data 
-                 _which is going to import to the choosen database
-            """
+            #  Ask if user is sure about to import data into the choosen database
             check_to_import = True
             while check_to_import:
                 answer_to_import = input("\nare you sure you want to import data to database(y/n)? ")
