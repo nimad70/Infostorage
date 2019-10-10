@@ -52,24 +52,8 @@ while check_to_continue_retrieve_import:
             
             """ Check if user enters anything except numbers(integer) 
                  _about number of items they want to import to database"""
-            print("How many items do you want to enter:", end=' ')
+            print("\nHow many items do you want to enter:", end=' ')
             count = digit_check()
-            
-
-
-
-# \\\\\\\\\\\ use print before digi_check() to say the line to get number and then delete text in input in digit_check() 
-# and add print() to db.py
-
-            # counter_check = True
-            # while counter_check:
-            #     try:
-            #         # Get number of items
-            #         count = int(input("How many items do you want to enter: "))
-            #     except ValueError:
-            #         print("-> Wrong! Enter a number!\n")
-            #     else:
-            #         counter_check = False
             
             info_list = get_info(count)
             print(info_list)
