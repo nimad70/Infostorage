@@ -21,14 +21,8 @@ def get_info(item_count):
         print(f"username: {username_}")
         
         # Get Password
-        while True:
-            password_ = input("\nEnter password: ")
-            # Password validation
-            if password_validation(password_):
-                break
-            else:
-                print("try again!\n")
-
+        password_ = get_password()
+        print(f"password: {password_}")
 
         # comments about account information
         comments = ""
