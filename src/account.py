@@ -12,13 +12,12 @@ def get_info(item_count):
     
     counter_ = 0
     while counter_ != item_count:
-        print("\nEnter info num.", counter_+1)
-        # Get info from user about his account
+        print("\nEnter info num. {}".format(counter_+1))
 
         # Website/app name
-        """ Turn is_validated from to False for every step
-            cause for other info except 'app' it will still be 'True'
-            and if it doesn't turn to 'False' it will not check other whiles
+        """ Turn is_validated to False for every step
+             _cause for other info except 'app' it will still be 'True'
+             _and if it doesn't turn to 'False' it will not check other whiles
         """
         is_validated = False
         # Website/App name validation
@@ -95,6 +94,13 @@ def get_info(item_count):
     return account_info
 
 
+def username_validation():
+    pass
+
+
+
+
+
 
 # Validation section
 """ Validating user's account information
@@ -108,6 +114,7 @@ def validate_info(val, symb):
     # Checking if app/website name is correct
     if symb == 'app':
         print(val)
+
         if not(not(val and not val.isspace())):
             if (len(val) > 50):
                 print("\n-> More than 50 letters!")
@@ -142,3 +149,8 @@ def validate_info(val, symb):
         print("Wrong symbol! and that's not ypur fault!")
 
     return is_valid
+
+
+if __name__ == "__main__":
+    print("\nGet Info:\n")
+    get_info(2)
