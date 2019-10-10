@@ -24,6 +24,8 @@ def get_info(item_count):
         password_ = get_password()
         print(f"password: {password_}")
 
+
+
         # comments about account information
         comments = ""
         # Check answer to y/n question about comments
@@ -55,6 +57,9 @@ def get_info(item_count):
             # Wrong answer
             else:
                 print("\nWrong answer to y/n! Enter again plz.")
+
+
+        
         
         account_info.append((app_name, username_, password_, comments))
         counter_ += 1
@@ -99,6 +104,39 @@ def get_password():
         else:
             print("try again!\n")
     return password_gp
+
+
+# Get comments about account information
+def get_comments():
+    comments = ""
+    # Check answer to y/n question about comments
+    comments_check_answer = True
+    while comments_check_answer:
+        # Check if user has any comments about his info
+        has_comments = input("Have any comments(y/n)? ")
+
+        # Answer == yes
+        if has_comments == 'y':
+            while True:
+                comments = input("\nEnter Your comments: ")
+                # Comment validation
+                if Comment_validation(comments):
+                    break
+                else:
+                    print("try again!\n")     
+            comments_check_answer = False
+            break
+        
+        # Answer == no
+        elif has_comments == 'n':
+            print("Good!")
+            comments_check_answer = False
+            break
+        
+        # Wrong answer
+        else:
+            print("\nWrong answer to y/n! Enter again plz.")
+    return comments
 
 
 # Website/app name Validation
