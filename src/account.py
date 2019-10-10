@@ -13,13 +13,15 @@ def get_info(item_count):
         print("\nEnter account info number.{}:".format(counter_+1))
 
         # Get website/app name
-        while True:
-            app_name = input("\nEnter website or application name: ")
-            # Website/App name validation
-            if appname_validation(app_name):
-                break
-            else:
-                print("try again!\n")
+        app_name = get_app_name()
+        print("app name: {}".format(app_name))
+        # while True:
+        #     app_name = input("\nEnter website or application name: ")
+        #     # Website/App name validation
+        #     if appname_validation(app_name):
+        #         break
+        #     else:
+        #         print("try again!\n")
 
         # Get Username
         while True:
@@ -82,13 +84,13 @@ def get_info(item_count):
 def get_app_name():
     # Get website/app name
     while True:
-        app_name = input("\nEnter website or application name: ")
+        app_name_val = input("\nEnter website or application name: ")
         # Website/App name validation
-        if appname_validation(app_name):
+        if appname_validation(app_name_val):
             break
         else:
             print("try again!\n")
-    return app_name
+    return app_name_val
 
 
 
