@@ -24,8 +24,7 @@ def collection_list(coll_list_db):
 # collec_list: collection list from collection_list()
 def create_collection(craete_coll_db, collec_list):
     # Check if name exists or not
-    coll_name_exists = True
-    while coll_name_exists:
+    while True:
         # Get collection name from user
         coll_name_user = input('\nGive a collection name to create one: ')
         print(coll_name_user)
@@ -38,8 +37,7 @@ def create_collection(craete_coll_db, collec_list):
             # Create collection
             coll = craete_coll_db[coll_name_user]
             print("\nCollection is created")
-            coll_name_exists = False
-    
+            break
     return coll
 
 
@@ -68,9 +66,8 @@ def choose_collection(choose_coll_db, choose_coll_list):
     return ch_coll
 
 
-""" Insert user account information into database
-     and return a boolean as the result
-"""
+# Insert user account information into the database
+# return True/False as result
 def insert_data(db, account_info, list_len):
     print("\n db: ", db)
     print("\n acc: ", account_info)
