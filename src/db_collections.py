@@ -100,7 +100,6 @@ def make_dictionary(account_info_md, list_len_md):
 # coll_list_cmc: collection list from make_collection()
 def checkto_make_choose(db_cmc, coll_list_cmc):
     coll = ""
-    
     # create new collection
     if not coll_list_cmc: # If collection list is empty
         coll = create_collection(db_cmc, coll_list_cmc) # create collection
@@ -126,10 +125,26 @@ def checkto_make_choose(db_cmc, coll_list_cmc):
     return coll # return new or choosen collection
 
 
-
 # Insert user account information into the database
-def insert_data():
-    pass
+# list_dict: list_data_dict from make_collection() - list of dictionaries 
+# single_dict: single_data_dict from make_collection() - dictionary with one item
+# collec: collection_ from make_collection()
+# return 'True' if data inserted into the database
+def insert_data(single_dict, list_dict, collec):
+    insert_res = False
+
+    if not single_dict: # if True(single_dict is not empty)
+        # Using insert_one()
+        insert_res = True
+
+    elif not list_dict: # else if True(list_dict is not empty)
+        # Using insert_omany()
+        insert_res = True
+
+    else:
+        print("Something goes wrong!")
+    
+    return insert_res
 
 
 
@@ -145,24 +160,22 @@ def make_collection(db, account_info, list_len):
     print("\nlen: ", len(account_info))
     print("\n coun: ", list_len)
 
-    # user account informations dictionary
-    data_dict = make_dictionary(account_info, list_len)
-    print("\ndata_dict: {}".format(data_dict))
+    # Make user account informations dictionary
+    single_data_dict = {} # Dictionary with one item
+    list_data_dict = [] # List of dictionaries
+    single_data_dict, list_data_dict = make_dictionary(account_info, list_len) 
+    print("\nsingle data_dict: {}".format(single_data_dict))
+    print("\nlist data_dict: {}".format(list_data_dict))
 
     coll_list = collection_list(db) # Get list of collections
     
     collection_ = checkto_make_choose(db, coll_list)
     print("\n\n\n collection_ : {}".format(collection_))
 
-    # If there is more than 1 item in the user account list
-    if list_len > 1:
-        # Using insert_one() to insert item into database
-
-        pass
-    # If there is just one dictionary
-    else:
-        # inserted_dctnry = 
-        pass
+    # Insert data into the database
+    res = insert_data(single_data_dict, list_data_dict, collection_)
+    print(f"\nres: {res}")
+    
 
 
 if __name__ == "__main__":
