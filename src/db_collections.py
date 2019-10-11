@@ -95,6 +95,38 @@ def make_dictionary(account_info_md, list_len_md):
     return account_dict, account_list_dict 
 
 
+# Only checks to make a collection or choose one
+# db_cmc = db from make_collection()
+# coll_list_cmc: collection list from make_collection()
+def checkto_make_choose(db_cmc, coll_list_cmc):
+    coll = ""
+    
+    # create new collection
+    if not coll_list_cmc: # If collection list is empty
+        coll = create_collection(db_cmc, coll_list_cmc) # create collection
+        print("\nnew coll: ", coll)
+    else:
+        # Check if user wants to make a new collection or choose one from the list
+        while True: 
+            make_new_coll_list = input("\nMake(n) new collection or use(l) one from the list(n/l): ")
+            
+            if make_new_coll_list == 'n': # Make new collection
+                coll = create_collection(db_cmc, coll_list_cmc)
+                print("\nnew coll: ", coll)
+                break
+            
+            elif make_new_coll_list == 'l': # Choose one collection from collection list
+                coll = choose_collection(db_cmc, coll_list_cmc)
+                print("choosen coll: ", coll)
+                break
+            
+            else: # Wrong answer to y/n question
+                print("\nWrong answer! try again.")
+
+    return coll # return new or choosen collection
+
+
+
 # Insert user account information into the database
 def insert_data():
     pass
@@ -115,38 +147,12 @@ def make_collection(db, account_info, list_len):
 
     # user account informations dictionary
     data_dict = make_dictionary(account_info, list_len)
-    print("data_dict: {}".format(data_dict))
+    print("\ndata_dict: {}".format(data_dict))
 
     coll_list = collection_list(db) # Get list of collections
-
-    # create collection
-    if not coll_list: # If collection list is empty
-        # create one
-        new_coll = create_collection(db, coll_list)
-        print("\nnew coll: ", new_coll)
-    else:
-        # Check if user wants to make a new collection or choose one from the list
-        while True: 
-            make_new_coll_list = input("\nMake(n) new collection or use(l) one from the list(n/l): ")
-            # Make new collection
-            if make_new_coll_list == 'n':
-                new_coll = create_collection(db, coll_list)
-                print("\nnew coll: ", new_coll)
-                break
-            # Choose one collection from collection list
-            elif make_new_coll_list == 'l':
-                choosen_collection = choose_collection(db, coll_list)
-                print("choosen coll: ", choosen_collection)
-                break
-            # Wrong answer to y/n question
-            else:
-                print("\nWrong answer! try again.")
-
-
-
-        
-
-
+    
+    collection_ = checkto_make_choose(db, coll_list)
+    print("\n\n\n collection_ : {}".format(collection_))
 
     # If there is more than 1 item in the user account list
     if list_len > 1:
