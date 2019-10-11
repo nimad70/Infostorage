@@ -71,6 +71,30 @@ def choose_collection(choose_coll_db, choose_coll_list):
     return ch_coll # Return choosen collection list
 
 
+# Make a dictionary of user account informations
+# account_info_md: account_info from insert_data()
+# list_len_md: list_len from insert_data()
+def make_dictionary(account_info_md, list_len_md):
+    # List of dictionaries for more than 1 item in account list
+    account_list_dict = []
+
+    # Create a list of key names for key/value pair dictionary
+    key_name_list = ['appname', 'username', 'password', 'comment']
+
+    # Create dictionary from tuples/tuple in the account list
+    for value_item in account_info_md:
+        print("\nvalue_item: ", value_item)
+        account_dict = dict(zip(key_name_list, value_item)) # {'key_name_list':'value_item', ...}
+        print("single dict: ", account_dict)
+        # If there is just one item, do not create a list of dictionaries 
+        if list_len_md == 1:
+            break
+        account_list_dict.append(account_dict)  
+    print("\n\ndict list: ", account_list_dict)
+    # Return account_dict with one info or account_list_dict with multiple info's
+    return account_dict, account_list_dict 
+
+
 # Insert user account information into the database
 # return True/False as result
 def insert_data(db, account_info, list_len):
@@ -79,22 +103,10 @@ def insert_data(db, account_info, list_len):
     print("\nlen: ", len(account_info))
     print("\n coun: ", list_len)
 
-    # List of dictionaries for more than 1 item in account list
-    account_list_dict = []
+    # user account informations dictionary
+    data_dict = make_dictionary(account_info, list_len)
+    print("data_dict: {}".format(data_dict))
 
-    # Create a list of key names for key/value pair dictionary
-    key_name_list = ['appname', 'username', 'password', 'comment']
-
-    # Create dictionary from tuples/tuple in the account list
-    for value_item in account_info:
-        print("\n", value_item)
-        account_dict = dict(zip(key_name_list, value_item))
-        print("single dict: ", account_dict)
-        # If there is just one item, do not create a list of dictionaries 
-        if list_len == 1:
-            break
-        account_list_dict.append(account_dict)  
-    print("\n\ndict list: ", account_list_dict)
     coll_list = collection_list(db) # Get list of collections
 
     # create collection
