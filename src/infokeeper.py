@@ -3,7 +3,7 @@
 from db import connect_db
 import datetime
 from account import get_info
-from db_collections import insert_data
+from db_collections import make_collection
 from regcheck import digit_check
 
 
@@ -66,9 +66,11 @@ while check_to_continue_retrieve_import:
                 if answer_to_import == 'y':
                     print("okay")
 
+                    # -----------------------------------------------------------
                     # insert data into database
                     # ins_result = insert_data(db, info_list, count)
-                    insert_data(db, info_list, count)
+                    make_collection(db, info_list, count)
+                    # -----------------------------------------------------------
 
 
                     
