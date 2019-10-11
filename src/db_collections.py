@@ -16,29 +16,34 @@ def collection_list(coll_list_db):
     else:
         for counter, collection_name in enumerate(collectn_list, 1):
             print(counter, '.', collection_name)
-    return collectn_list
+    return collectn_list # Return collection list
 
 
 # create a collection
 # create_coll_db: db from insert_data()
 # collec_list: collection list from collection_list()
 def create_collection(craete_coll_db, collec_list):
-    # Check if name exists or not
-    while True:
-        # Get collection name from user
-        coll_name_user = input('\nGive a collection name to create one: ')
-        print(coll_name_user)
+    while True: # Check if name exists or not
+        while True: # Check if name is only letters
+            # Get collection name from user
+            coll_name_user = input('\nGive a collection name to create one: ')
+
+            # check if name is only letters
+            if check_only_letters(coll_name_user):
+                break
+            else:
+                print("\n -> only letters is allowed")
 
         # if db name exists
         if coll_name_user in collec_list:
             print("\n-> The collection is already created! Enter New name plz!")
-
         else:
             # Create collection
+            print("coll_name_user: ", coll_name_user)
             coll = craete_coll_db[coll_name_user]
             print("\nCollection is created")
             break
-    return coll
+    return coll # Return created collection
 
 
 # choose collection from list
@@ -58,12 +63,12 @@ def choose_collection(choose_coll_db, choose_coll_list):
         if coll_list_num in range(len(choose_coll_list)+1):
             break
         else:
-            print("Wrong number! plz enter number in a range of 1 to ", len(choose_coll_list))
+            print("Wrong number! plz enter a number in a range of 1 to ", len(choose_coll_list))
 
     print(f"collection: {choose_coll_list[(coll_list_num-1)]}")
     choosen_coll = choose_coll_list[(coll_list_num-1)]  # Get collection name from collection list
     ch_coll = choose_coll_db[choosen_coll] # Get collection from database
-    return ch_coll
+    return ch_coll # Return choosen collection list
 
 
 # Insert user account information into the database
@@ -88,21 +93,36 @@ def insert_data(db, account_info, list_len):
         # If there is just one item, do not create a list of dictionaries 
         if list_len == 1:
             break
-        account_list_dict.append(account_dict)
-    
+        account_list_dict.append(account_dict)  
     print("\n\ndict list: ", account_list_dict)
-
-    coll_list = collection_list(db)
+    coll_list = collection_list(db) # Get list of collections
 
     # create collection
-    if not coll_list:
+    if not coll_list: # If collection list is empty
         # create one
         new_coll = create_collection(db, coll_list)
         print("\nnew coll: ", new_coll)
     else:
-        choosen_collection = choose_collection(db, coll_list)
-        print("choosen coll: ", choosen_collection)
-        #  choose from list
+        # Check if user wants to make a new collection or choose one from the list
+        while True: 
+            make_new_coll_list = input("\nMake(n) new collection or use(l) one from the list(n/l): ")
+            # Make new collection
+            if make_new_coll_list == 'n':
+                new_coll = create_collection(db, coll_list)
+                print("\nnew coll: ", new_coll)
+                break
+            # Choose one collection from collection list
+            elif make_new_coll_list == 'l':
+                choosen_collection = choose_collection(db, coll_list)
+                print("choosen coll: ", choosen_collection)
+                break
+            # Wrong answer to y/n question
+            else:
+                print("\nWrong answer! try again.")
+
+
+
+        
 
 
 
