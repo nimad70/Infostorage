@@ -5,7 +5,7 @@ from regcheck import *
 
 
 # show a list of collections or make a new one
-# coll_list_db: db from insert_data()
+# coll_list_db: db from make_collection()
 def collection_list(coll_list_db):
     print("\n List of collections:")
     collectn_list = coll_list_db.list_collection_names()
@@ -20,7 +20,7 @@ def collection_list(coll_list_db):
 
 
 # create a collection
-# create_coll_db: db from insert_data()
+# create_coll_db: db from make_collection()
 # collec_list: collection list from collection_list()
 def create_collection(craete_coll_db, collec_list):
     while True: # Check if name exists or not
@@ -47,7 +47,7 @@ def create_collection(craete_coll_db, collec_list):
 
 
 # choose collection from list
-# choose_coll_db: db from insert_data()
+# choose_coll_db: db from make_collection()
 # choose_coll_list: collection list from collection_list()
 def choose_collection(choose_coll_db, choose_coll_list):
     # Check if user enters correct number
@@ -72,8 +72,8 @@ def choose_collection(choose_coll_db, choose_coll_list):
 
 
 # Make a dictionary of user account informations
-# account_info_md: account_info from insert_data()
-# list_len_md: list_len from insert_data()
+# account_info_md: account_info from make_collection()
+# list_len_md: list_len from make_collection()
 def make_dictionary(account_info_md, list_len_md):
     # List of dictionaries for more than 1 item in account list
     account_list_dict = []
@@ -96,8 +96,18 @@ def make_dictionary(account_info_md, list_len_md):
 
 
 # Insert user account information into the database
+def insert_data():
+    pass
+
+
+
+def retrieve_data(db):
+    pass
+
+
+# Make collections
 # return True/False as result
-def insert_data(db, account_info, list_len):
+def make_collection(db, account_info, list_len):
     print("\n db: ", db)
     print("\n acc: ", account_info)
     print("\nlen: ", len(account_info))
@@ -147,12 +157,6 @@ def insert_data(db, account_info, list_len):
     else:
         # inserted_dctnry = 
         pass
-
-
-
-def retrieve_data(db):
-    pass
-
 
 
 if __name__ == "__main__":
