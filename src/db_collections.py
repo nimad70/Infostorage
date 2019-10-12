@@ -177,40 +177,31 @@ def make_collection(db, account_info, list_len):
     print(f"\nres: {res}")
 
 
+# Find all data and show
+def find_all():
+    pass
+
+
+# Query database
+def find_one():
+    pass
+
+
 # retrieve data from database
 def retrieve_data(db):
-    pass
+    # Check to finda all or query for a specific data
+    while True:
+        find_query_ans = input("Return(r) all data or "
+         "Search(s) for a specific one or End(e)\n[r/s/e]:")
+        if find_query_ans == 'r': # Finda all
+             pass
+        elif find_query_ans == 's': # Query
+            pass
+        elif find_query_ans == 'e': # Stop program
+            break
+        else: # Wrong answer
+            print("*Wrong answer, try again!")
 
 
 if __name__ == "__main__":
     print("nima")
-
-
-
-
-"""
-# Asking user to make a new collection or used one from the list
-    # new_db = False
-    check_answer_to_make_new_coll = True
-    while check_answer_to_make_new_coll:
-        answer_new_or_list = input("\nMaking new collection(c) or Using one from list(l) - (c/l): ")
-        
-        # Making a new databse
-        if answer_new_or_list == 'c':
-        
-        # Using db from old databases in the list
-        elif answer_new_or_list == 'l':
-            print(answer_new_or_list)
-
-
-            check_answer_to_make_new_coll = False
-            break
-
-        # Wrong answer to make db or use from the list question
-        else:
-            print("\n*Wrong answer, Enter again plz!")
-        
-    return coll
-
-
-"""
