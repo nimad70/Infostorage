@@ -178,15 +178,16 @@ def make_collection(db, account_info, list_len):
 
 
 # Find all data and show
-# colltion: colltion from retrieve_data() - choosen collection
-def find_all(colltion_fall):
+# collection_fall: colltion from retrieve_data() - choosen collection
+def find_all(collection_fall):
     # Show documents withoud the _id
-    for doc in colltion_fall.find({}, {"_id":0}):
+    for doc in collection_fall.find({}, {"_id":0}):
         print("doc: ", doc)
 
 
 # Query database
-def find_one(col):
+# collection_fone: colltion from retrieve_data() - choosen collection
+def find_one(colllection_fone):
     pass
 
 
@@ -222,13 +223,13 @@ def retrieve_data(db):
             "\n3. End: e"
             "\n\n[r/s/e]: ")
         if find_query_ans == 'r': # Finda all
-             find_all(colltion_) # retrieve documents from collection
-             if conitue_retrieve():
+             find_all(colltion_) # Retrieve documents from collection
+             if conitue_retrieve(): # Stop retrieving if True
                 break 
 
         elif find_query_ans == 's': # Query
-            find_one(colltion_)
-            if conitue_retrieve():
+            find_one(colltion_) # Retrieve a specific document from collection
+            if conitue_retrieve(): # Stop retrieving if True
                 break
         
         elif find_query_ans == 'e': # Stop program
