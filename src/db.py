@@ -76,44 +76,32 @@ def retrieve_db(rdb_client, rdb_db_list):
 
 # Connecting to the database
 def connect_db():
-    # Running Mongod instance
-    client = MongoClient('localhost', 27017)
-
-    # Show databases list
-    database_list = db_list(client)
+    client = MongoClient('localhost', 27017) # Running Mongod instance
+    database_list = db_list(client) # Show databases list
 
     # Turn to True if user makes a new database
     new_db = False
 
     # Check if there is any db in db_list to make a new database or not
-    if not database_list:
+    if not database_list: # if no database in database list
         print("\nCreate a database to continue")
-        # Create a new database
-        db, new_db = create_db(database_list, client)
-    else:
-        # Ask user if they want to make a new db or use one from db
-        check_answer_to_make_new_db = True
-        while check_answer_to_make_new_db:
+        db, new_db = create_db(database_list, client) # Create a new database
+
+    else: # if there is db in database list
+        while True: # Ask to make a new database or use one from the list
             answer_new_or_list = input("\nMaking new datbase(n) or Using one from list(l) - (n/l): ")
             
-            # Making a new databse
-            if answer_new_or_list == 'n':
-                # Create new database
-                db, new_db = create_db(database_list, client)
-                check_answer_to_make_new_db = False
+            if answer_new_or_list == 'n': # Making a new databse
+                db, new_db = create_db(database_list, client) # Create new database
                 break
                 
-            # Using db from old databases in the list
-            elif answer_new_or_list == 'l':
-                # Choose one from db list
-                db = retrieve_db(client, database_list)
-                check_answer_to_make_new_db = False
+            elif answer_new_or_list == 'l': # Using db from old databases in the list
+                db = retrieve_db(client, database_list) # Choose one from db list
                 break
 
-            # Wrong answer to make db or use from the list question
-            else:
+            
+            else: # Wrong answer to the question
                 print("\n*Wrong answer, Enter again plz!")
-        
     return db, new_db
 
 
