@@ -39,7 +39,6 @@ def create_collection(craete_coll_db, collec_list):
             print("\n-> The collection is already created! Enter New name plz!")
         else:
             # Create collection
-            print("coll_name_user: ", coll_name_user)
             coll = craete_coll_db[coll_name_user]
             print("\nCollection is created")
             break
@@ -65,7 +64,7 @@ def choose_collection(choose_coll_db, choose_coll_list):
         else:
             print("Wrong number! plz enter a number in a range of 1 to ", len(choose_coll_list))
 
-    print(f"collection: {choose_coll_list[(coll_list_num-1)]}")
+    print(f"-> collection: {choose_coll_list[(coll_list_num-1)]}")
     choosen_coll = choose_coll_list[(coll_list_num-1)]  # Get collection name from collection list
     ch_coll = choose_coll_db[choosen_coll] # Get collection from database
     return ch_coll # Return choosen collection list
@@ -77,22 +76,19 @@ def choose_collection(choose_coll_db, choose_coll_list):
 def make_dictionary(account_info_md, list_len_md):
     # List of dictionaries for more than 1 item in account list
     account_list_dict = []
-
     # Create a list of key names for key/value pair dictionary
     key_name_list = ['appname', 'username', 'password', 'comment']
 
     # Create dictionary from tuples/tuple in the account list
     for value_item in account_info_md:
-        print("\nvalue_item: ", value_item)
         account_dict = dict(zip(key_name_list, value_item)) # {'key_name_list':'value_item', ...}
-        print("single dict: ", account_dict)
         # If there is just one item, do not create a list of dictionaries 
         if list_len_md == 1:
             break
+        # appaend dictionary to account_list_dict[]
         account_list_dict.append(account_dict)
-        # keep the last value and cause problem in insert_data() if we do not make it empty in multi dictionaries
+        # cause problem in insert_data() if we do not make account_dict{} empty in multi dictionaries
         account_dict = {}
-    print("\n\ndict list: ", account_list_dict)
     # Return account_dict with one info or account_list_dict with multiple info's
     return account_dict, account_list_dict 
 
@@ -101,29 +97,29 @@ def make_dictionary(account_info_md, list_len_md):
 # db_cmc = db from make_collection()
 # coll_list_cmc: collection list from make_collection()
 def checkto_make_choose(db_cmc, coll_list_cmc):
-    coll = ""
+    coll = "" # Collection
     # create new collection
     if not coll_list_cmc: # If collection list is empty
         coll = create_collection(db_cmc, coll_list_cmc) # create collection
-        print("\nnew coll: ", coll)
     else:
         # Check if user wants to make a new collection or choose one from the list
         while True: 
-            make_new_coll_list = input("\nMake(n) new collection or use(l) one from the list(n/l): ")
+            make_new_coll_list = input(
+                "\n1. Make new collection: n"
+                "\n2. Use one from the list: l"
+                "\n\n[n/l]: ")
             
             if make_new_coll_list == 'n': # Make new collection
                 coll = create_collection(db_cmc, coll_list_cmc)
-                print("\nnew coll: ", coll)
                 break
             
             elif make_new_coll_list == 'l': # Choose one collection from collection list
                 coll = choose_collection(db_cmc, coll_list_cmc)
-                print("choosen coll: ", coll)
                 break
             
             else: # Wrong answer to y/n question
                 print("\nWrong answer! try again.")
-
+            
     return coll # return new or choosen collection
 
 
@@ -133,20 +129,20 @@ def checkto_make_choose(db_cmc, coll_list_cmc):
 # collec: collection_ from make_collection
 # return 'True' if data inserted into the database
 def insert_data(single_dict, list_dict, collec):
-    insert_res = False
-    insert_id = ""
+    insert_res = False # True if data is inserted
+    insert_id = "" # returned _id/_ids after insertion
 
     if single_dict: # if single_dict{} is not empty
-        insert_id = collec.insert_one(single_dict)
+        insert_id = collec.insert_one(single_dict) # Insert one document
         print(f"insert id: {insert_id.inserted_id}")
         insert_res = True
 
     elif list_dict: # else if list_dict[] is not empty
-        insert_id = collec.insert_many(list_dict)
+        insert_id = collec.insert_many(list_dict) # Insert multi documents
         print(f"insert id: {insert_id.inserted_ids}")
         insert_res = True
 
-    else:
+    else: # insert is not working
         print("Something goes wrong!")
     
     return insert_res
@@ -155,26 +151,19 @@ def insert_data(single_dict, list_dict, collec):
 # Make collections
 # return True/False as result
 def make_collection(db, account_info, list_len):
-    print("\n db: ", db)
-    print("\n acc: ", account_info)
-    print("\nlen: ", len(account_info))
-    print("\n coun: ", list_len)
-
     # Make user account informations dictionary
     single_data_dict = {} # Dictionary with one item
     list_data_dict = [] # List of dictionaries
-    single_data_dict, list_data_dict = make_dictionary(account_info, list_len) 
-    print("\nsingle data_dict: {}".format(single_data_dict))
-    print("\nlist data_dict: {}".format(list_data_dict))
-
+    single_data_dict, list_data_dict = make_dictionary(account_info, list_len) # Make dictionary
     coll_list = collection_list(db) # Get list of collections
-    
-    collection_ = checkto_make_choose(db, coll_list)
-    print("\n\n\n collection_ : {}".format(collection_))
+    collection_ = checkto_make_choose(db, coll_list) # Choose collection or make a new one
 
     # Insert data into the database
     res = insert_data(single_data_dict, list_data_dict, collection_)
-    print(f"\nres: {res}")
+    if res: # if res == True
+        print("\nData is inserted!")
+    else:
+        print("\nNot inserted!")
 
 
 # Find all data and show
@@ -187,32 +176,29 @@ def find_all(collection_fall):
 
 # Query database based on appname
 # collection_fone: colltion from retrieve_data() - choosen collection
-# Return True/False as if document is found
 def find_one(colllection_fone):
     search_again = True
-    while search_again:
-        app_name_ = input("\nEnter app name: ")
-        query = {"appname": app_name_}
-        ans = colllection_fone.find(query)
-        count_ = ans.count()
-        # ret = ans.retrieved
-        print("\ncount: ", count_)
-        # print("\nret: ", ret)
-        if count_ != 0:
-            print(f"\ndoc: {ans}")
+    while search_again: # search to find new document
+        app_name_ = input("\nEnter website/app name: ") # Get web/app name
+        query = {"appname": app_name_} # Make query
+        ans = colllection_fone.find(query, {"_id":0}) # Query to database
+        count_ = ans.count() # Number of found items
+        # ret = ans.retrieved # same as .count()
+        if count_ != 0: # if item is found
+            for doc_ in ans:
+                print(f"\ndoc: {doc_}")
             break
-        else:
+        else: # else item is not found
             print("\nNo documnet found!")
-            while True:
+            while True: # ask to search again or not
                 again_ans = input("\nSearch again [y/n]? ")
                 if again_ans == 'y':
                     break
                 elif again_ans == 'n':
                     search_again = False
                     break
-                else:
+                else: # wrong answer to the question
                     print("\n*Wrong answer, Try again!")
-    
 
 
 # Check to stop or continue retrieving
@@ -226,7 +212,7 @@ def conitue_retrieve():
         elif continue_stop == 'n': # Stop retrieving
             stop_ = True
             break
-        else: # Wrong answer
+        else: # Wrong answer to the question
             print("*Wrong answer, Try again!")
     return stop_
 
@@ -239,9 +225,8 @@ def retrieve_data(db):
         print("\nChoose one colletion to continue:")
         colls_list = collection_list(db) # Get list of collections
         colltion_ = choose_collection(db, colls_list) # Choose a collection to query
-        print("\n\n colltion_ : {}".format(colltion_))
 
-        while True:
+        while True: # True if answer is wrong 
             find_query_ans = input(
                 "\n1. Return all documents: r"
                 "\n2. Search for a specific one: s"
