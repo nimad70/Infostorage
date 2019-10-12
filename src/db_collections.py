@@ -185,10 +185,34 @@ def find_all(collection_fall):
         print("doc: ", doc)
 
 
-# Query database
+# Query database based on appname
 # collection_fone: colltion from retrieve_data() - choosen collection
+# Return True/False as if document is found
 def find_one(colllection_fone):
-    pass
+    search_again = True
+    while search_again:
+        app_name_ = input("\nEnter app name: ")
+        query = {"appname": app_name_}
+        ans = colllection_fone.find(query)
+        count_ = ans.count()
+        # ret = ans.retrieved
+        print("\ncount: ", count_)
+        # print("\nret: ", ret)
+        if count_ != 0:
+            print(f"\ndoc: {ans}")
+            break
+        else:
+            print("\nNo documnet found!")
+            while True:
+                again_ans = input("\nSearch again [y/n]? ")
+                if again_ans == 'y':
+                    break
+                elif again_ans == 'n':
+                    search_again = False
+                    break
+                else:
+                    print("\n*Wrong answer, Try again!")
+    
 
 
 # Check to stop or continue retrieving
@@ -209,33 +233,38 @@ def conitue_retrieve():
 
 # retrieve data from database
 def retrieve_data(db):
-    # Check to finda all or query for a specific document
-    while True:
+    # finda all documents or query for a specific one
+    check_retrieving = True
+    while check_retrieving:
         print("\nChoose one colletion to continue:")
         colls_list = collection_list(db) # Get list of collections
         colltion_ = choose_collection(db, colls_list) # Choose a collection to query
-
         print("\n\n colltion_ : {}".format(colltion_))
 
-        find_query_ans = input(
-            "\n1. Return all documents: r"
-            "\n2. Search for a specific one: s"
-            "\n3. End: e"
-            "\n\n[r/s/e]: ")
-        if find_query_ans == 'r': # Finda all
-             find_all(colltion_) # Retrieve documents from collection
-             if conitue_retrieve(): # Stop retrieving if True
-                break 
+        while True:
+            find_query_ans = input(
+                "\n1. Return all documents: r"
+                "\n2. Search for a specific one: s"
+                "\n3. End: e"
+                "\n\n[r/s/e]: ")
+            if find_query_ans == 'r': # Finda all
+                find_all(colltion_) # Retrieve documents from collection
+                if conitue_retrieve(): # Stop retrieving if True
+                    check_retrieving = False
+                    break
 
-        elif find_query_ans == 's': # Query
-            find_one(colltion_) # Retrieve a specific document from collection
-            if conitue_retrieve(): # Stop retrieving if True
+            elif find_query_ans == 's': # Query
+                find_one(colltion_) # Retrieve a specific document from collection
+                if conitue_retrieve(): # Stop retrieving if True
+                    check_retrieving = False
+                    break
+            
+            elif find_query_ans == 'e': # Stop program
+                check_retrieving = False
                 break
-        
-        elif find_query_ans == 'e': # Stop program
-            break
-        else: # Wrong answer
-            print("*Wrong answer, try again!")
+
+            else: # Wrong answer
+                print("\n*Wrong answer, try again!")
 
 
 if __name__ == "__main__":
