@@ -134,12 +134,12 @@ def insert_data(single_dict, list_dict, collec):
 
     if single_dict: # if single_dict{} is not empty
         insert_id = collec.insert_one(single_dict) # Insert one document
-        print(f"insert id: {insert_id.inserted_id}")
+        print(f"\ninsert id: {insert_id.inserted_id}")
         insert_res = True
 
     elif list_dict: # else if list_dict[] is not empty
         insert_id = collec.insert_many(list_dict) # Insert multi documents
-        print(f"insert id: {insert_id.inserted_ids}")
+        print(f"\ninsert id: {insert_id.inserted_ids}")
         insert_res = True
 
     else: # insert is not working
