@@ -89,7 +89,9 @@ def make_dictionary(account_info_md, list_len_md):
         # If there is just one item, do not create a list of dictionaries 
         if list_len_md == 1:
             break
-        account_list_dict.append(account_dict)  
+        account_list_dict.append(account_dict)
+        # keep the last value and cause problem in insert_data() if we do not make it empty in multi dictionaries
+        account_dict = {}
     print("\n\ndict list: ", account_list_dict)
     # Return account_dict with one info or account_list_dict with multiple info's
     return account_dict, account_list_dict 
@@ -128,17 +130,20 @@ def checkto_make_choose(db_cmc, coll_list_cmc):
 # Insert user account information into the database
 # list_dict: list_data_dict from make_collection() - list of dictionaries 
 # single_dict: single_data_dict from make_collection() - dictionary with one item
-# collec: collection_ from make_collection()
+# collec: collection_ from make_collection
 # return 'True' if data inserted into the database
 def insert_data(single_dict, list_dict, collec):
     insert_res = False
+    insert_id = ""
 
-    if not single_dict: # if True(single_dict is not empty)
-        # Using insert_one()
+    if single_dict: # if single_dict{} is not empty
+        insert_id = collec.insert_one(single_dict)
+        print(f"insert id: {insert_id.inserted_id}")
         insert_res = True
 
-    elif not list_dict: # else if True(list_dict is not empty)
-        # Using insert_omany()
+    elif list_dict: # else if list_dict[] is not empty
+        insert_id = collec.insert_many(list_dict)
+        print(f"insert id: {insert_id.inserted_ids}")
         insert_res = True
 
     else:
