@@ -152,11 +152,6 @@ def insert_data(single_dict, list_dict, collec):
     return insert_res
 
 
-
-def retrieve_data(db):
-    pass
-
-
 # Make collections
 # return True/False as result
 def make_collection(db, account_info, list_len):
@@ -180,7 +175,11 @@ def make_collection(db, account_info, list_len):
     # Insert data into the database
     res = insert_data(single_data_dict, list_data_dict, collection_)
     print(f"\nres: {res}")
-    
+
+
+# retrieve data from database
+def retrieve_data(db):
+    pass
 
 
 if __name__ == "__main__":
