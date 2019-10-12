@@ -23,7 +23,6 @@ while check_to_continue_retrieve_import:
             " Import(i) data from/into the database or end(e)\n[r/i/e]: ")
 
         if answer_retrieve_import_end == 'r': # Retrieving data from database
-            
             # if user has just created a new database
             if new_database:
                 print("\n -> You've just created a new database, "
@@ -72,14 +71,13 @@ while check_to_continue_retrieve_import:
         else: # Wrong answer to retrieve(r) or import(i)
             print("\n*Wrong answer, Enter again plz!")
 
-    # Checking about retrieving or importing data section
-    check_y_n = True
-    while check_y_n:
-        check_answer = input("\n> start retrieving or importing data again(y/n)? ")
-        if check_answer == 'n':
+    # Check to keep retrieving or importing data or end program
+    while True:
+        check_answer = input("\n> start retrieving or importing data again (y/n)? ")
+        if check_answer == 'n': # Stop program
             check_to_continue_retrieve_import = False
-            check_y_n = False
-        elif check_answer == 'y':
-            check_y_n = False
-        else:
+            break
+        elif check_answer == 'y': # Continue
+            break
+        else: # Wrong answer
             print("*Wrong answer, Enter again please!")
