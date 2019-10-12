@@ -178,8 +178,11 @@ def make_collection(db, account_info, list_len):
 
 
 # Find all data and show
-def find_all():
-    pass
+# colltion: colltion from retrieve_data() - choosen collection
+def find_all(colltion):
+    # Show documents withoud the _id
+    for doc in colltion.find({}, {"_id":0}):
+        print("doc: ", doc)
 
 
 # Query database
@@ -189,12 +192,22 @@ def find_one():
 
 # retrieve data from database
 def retrieve_data(db):
-    # Check to finda all or query for a specific data
+    print("\nChoose one colletion to continue:")
+    colls_list = collection_list(db) # Get list of collections
+    colltion_ = choose_collection(db, colls_list) # Choose a collection to query
+
+    print("\n\n colltion_ : {}".format(colltion_))
+
+    # Check to finda all or query for a specific document
     while True:
-        find_query_ans = input("Return(r) all data or "
-         "Search(s) for a specific one or End(e)\n[r/s/e]:")
+        find_query_ans = input(
+            "\n1. Return all documents: r"
+            "\n2. Search for a specific one: s"
+            "\n3. End: e"
+            "\n\n[r/s/e]: ")
         if find_query_ans == 'r': # Finda all
-             pass
+             find_all(colltion_) # retrieve documents from collection
+
         elif find_query_ans == 's': # Query
             pass
         elif find_query_ans == 'e': # Stop program
@@ -204,4 +217,4 @@ def retrieve_data(db):
 
 
 if __name__ == "__main__":
-    print("nima")
+    print("\ndb_collections\n")
