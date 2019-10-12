@@ -13,15 +13,11 @@ db, new_database = connect_db()
 print("\n", db, "\n", new_database)
 
 
-""" Check if user wants to continue retrieving or importing data 
-     _to database or end the program 
-"""
+#  continue retrieving or importing data to database or end the program
 check_to_continue_retrieve_import = True
 while check_to_continue_retrieve_import:
 
-    """ Check if user enters the correct letter 
-         _for retrieving or importing data from/into database
-    """
+    # Check to enter the correct letter for retrieving or importing data
     check_retrieve_import = True
     while check_retrieve_import:
 
@@ -29,14 +25,12 @@ while check_to_continue_retrieve_import:
         answer_retrieve_import = input("\nRetrieve(r) or"
             " Import(i) data from/into the database(r/i): ")
 
-        # Retrieving data from database
-        if answer_retrieve_import == 'r':
-            pass
-            """
-            # Check if user has just created a new database and db is empty
+        if answer_retrieve_import == 'r': # Retrieving data from database
+            
+            # if user has just created a new database
             if new_database:
-                print("You've just created a new database, "
-                    "first you should import some data into database!")
+                print("\n -> You've just created a new database, "
+                    "first you should import some data into it!")
             # If there is data in database
             else:
                 print(answer_retrieve_import)
@@ -44,10 +38,8 @@ while check_to_continue_retrieve_import:
 
 
                 check_retrieve_import = False
-            """
 
-        # Import data into database
-        elif answer_retrieve_import == 'i':
+        elif answer_retrieve_import == 'i': # Import data into database
             print(answer_retrieve_import)
             
             # Get number of items they want to import into the database
@@ -57,7 +49,6 @@ while check_to_continue_retrieve_import:
             
             info_list = get_info(count)
             print(info_list)
-            
 
             #  Ask if user is sure about to import data into the choosen database
             check_to_import = True
@@ -71,8 +62,6 @@ while check_to_continue_retrieve_import:
                     # ins_result = insert_data(db, info_list, count)
                     make_collection(db, info_list, count)
                     # -----------------------------------------------------------
-
-
                     
                     check_to_import = False
                 elif answer_to_import == 'n':
@@ -83,8 +72,7 @@ while check_to_continue_retrieve_import:
 
             check_retrieve_import = False
         
-        # Wrong answer to retrieve(r) or import(i)
-        else:
+        else: # Wrong answer to retrieve(r) or import(i)
             print("\n*Wrong answer, Enter again plz!")
 
     # Checking about retrieving or importing data section
