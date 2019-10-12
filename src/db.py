@@ -6,20 +6,18 @@ from regcheck import *
 
 
 # Show databases list
-# pass 'client' from connect_db() to module as 'db_client'
-# list of databases(db_list) as return value
+# db_client: client from connect_db()
+# db_list: list of databases as return value
 def db_list(db_client):
-    # Show all available databases
     print("\ndatabases list:\n")
-    db_list = db_client.list_database_names()
+    db_list = db_client.list_database_names() # Get list of databases
 
     # Check if collection list is empty or not to show it to the user
-    if not db_list:
+    if not db_list: # if no database
         print("\n-> There is no database to show!")
     else:
         for counter, dbname in enumerate(db_list, 1):
             print(counter, '.', dbname)
-    
     return db_list
 
 
@@ -27,32 +25,28 @@ def db_list(db_client):
 # dbls_list: database list from connect_db()
 # dbls_client: client from connect_db()
 def create_db(dbls_list, dbls_client):
-    # Return True as a new db is created
-    is_new_db = True
+    is_new_db = True # True if new db is created
 
-    # Check if name exists or not
-    db_name_exists = True
-    while(db_name_exists):
+    while True: # Check if name exists or not
+
         # Getting database name from user
-        checking_db_name = True # Check if name is only letters
-        while checking_db_name:
+        while True: # Check if name is only letters
             db_name_user = input('\nGive a database name to create one: ')
 
             # check if name is only letters
-            if check_only_letters(db_name_user):
-                checking_db_name = False
+            if check_only_letters(db_name_user): # if True
+                break
             else:
                 print("\n -> only letters is allowed")
 
-        # if db name exists
-        if db_name_user in dbls_list:
+        
+        if db_name_user in dbls_list: # if database name is in the list
             print("\n-> The database is already created! Enter New name plz!")
-        else:
-            # Create database
-            # db = client['reg_info_db']
-            created_db = dbls_client[db_name_user]
+
+        else: # if database name is not in the list
+            created_db = dbls_client[db_name_user] # Create database
             print("\nDatabase is created")
-            db_name_exists = False
+            break
     
     return created_db, is_new_db
 
