@@ -49,26 +49,22 @@ def get_comments():
         # Check if user has any comments about his info
         has_comments = input("\nHave any comments(y/n)? ")
 
-        # Answer == yes
-        if has_comments == 'y':
-            while True:
+        if has_comments == 'y': # have comments to make
+            while True: # check if comment is validated
                 comments_gc = input("\nEnter Your comments: ")
-                # Comment validation
-                if Comment_validation(comments_gc):
-                    break
-                else:
+                if Comment_validation(comments_gc): # Comment validation
+                    break # if True
+                else: # comment is not validate
                     print("try again!\n")     
             comments_check_answer = False
             break
         
-        # Answer == no
-        elif has_comments == 'n':
+        elif has_comments == 'n': # no comments to make
             print("Good!")
             comments_check_answer = False
             break
         
-        # Wrong answer
-        else:
+        else: # Wrong answer
             print("\nWrong answer to y/n! Enter again plz.")
     return comments_gc
 
@@ -148,28 +144,22 @@ def Comment_validation(cmnt_val):
 # Get user account information
 # return info as a list: {[app name, username, password, comments]}
 def get_info(item_count):
-    print(item_count)
-    account_info = []
-
-    counter_ = 0
+    account_info = [] # user account information list
+    counter_ = 0 # counter to check number of items to get
     while counter_ != item_count:
         print("\nEnter account info number.{}:".format(counter_+1))
 
-        # Get website/app name
-        app_name = get_app_name()
-        print("app name: {}".format(app_name))
+        app_name = get_app_name() # Get website/app name
+        print("-> app name: {}".format(app_name))
 
-        # Get Username
-        username_ = get_username()
-        print(f"username: {username_}")
+        username_ = get_username() # Get Username
+        print(f"-> username: {username_}")
         
-        # Get Password
-        password_ = get_password()
-        print(f"password: {password_}")
-
-        # Get comments
-        comments = get_comments()
-        print("comments: {}".format(comments))
+        password_ = get_password() # Get Password
+        print(f"-> password: {password_}")
+        
+        comments = get_comments() # Get comments
+        print("-> comments: {}".format(comments))
 
         account_info.append((app_name, username_, password_, comments))
         counter_ += 1
