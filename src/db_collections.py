@@ -179,27 +179,43 @@ def make_collection(db, account_info, list_len):
 
 # Find all data and show
 # colltion: colltion from retrieve_data() - choosen collection
-def find_all(colltion):
+def find_all(colltion_fall):
     # Show documents withoud the _id
-    for doc in colltion.find({}, {"_id":0}):
+    for doc in colltion_fall.find({}, {"_id":0}):
         print("doc: ", doc)
 
 
 # Query database
-def find_one():
+def find_one(col):
     pass
+
+
+# Check to stop or continue retrieving
+# Return True/False as result
+def conitue_retrieve():
+    stop_ = False
+    while True:
+        continue_stop = input("\nContinue retrieving [y/n]: ")
+        if continue_stop == 'y': # Continue retrieving
+            break
+        elif continue_stop == 'n': # Stop retrieving
+            stop_ = True
+            break
+        else: # Wrong answer
+            print("*Wrong answer, Try again!")
+    return stop_
 
 
 # retrieve data from database
 def retrieve_data(db):
-    print("\nChoose one colletion to continue:")
-    colls_list = collection_list(db) # Get list of collections
-    colltion_ = choose_collection(db, colls_list) # Choose a collection to query
-
-    print("\n\n colltion_ : {}".format(colltion_))
-
     # Check to finda all or query for a specific document
     while True:
+        print("\nChoose one colletion to continue:")
+        colls_list = collection_list(db) # Get list of collections
+        colltion_ = choose_collection(db, colls_list) # Choose a collection to query
+
+        print("\n\n colltion_ : {}".format(colltion_))
+
         find_query_ans = input(
             "\n1. Return all documents: r"
             "\n2. Search for a specific one: s"
@@ -207,9 +223,14 @@ def retrieve_data(db):
             "\n\n[r/s/e]: ")
         if find_query_ans == 'r': # Finda all
              find_all(colltion_) # retrieve documents from collection
+             if conitue_retrieve():
+                break 
 
         elif find_query_ans == 's': # Query
-            pass
+            find_one(colltion_)
+            if conitue_retrieve():
+                break
+        
         elif find_query_ans == 'e': # Stop program
             break
         else: # Wrong answer
