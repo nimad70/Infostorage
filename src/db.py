@@ -26,7 +26,6 @@ def db_list(db_client):
 # dbls_client: client from connect_db()
 def create_db(dbls_list, dbls_client):
     is_new_db = True # True if new db is created
-
     while True: # Check if name exists or not
 
         # Getting database name from user
@@ -46,8 +45,7 @@ def create_db(dbls_list, dbls_client):
         else: # if database name is not in the list
             created_db = dbls_client[db_name_user] # Create database
             print("\nDatabase is created")
-            break
-    
+            break 
     return created_db, is_new_db
 
 
@@ -55,9 +53,7 @@ def create_db(dbls_list, dbls_client):
 # rdb_db_list: database list from connect_db()
 # rdb_client: client from connect_db()
 def retrieve_db(rdb_client, rdb_db_list):
-    # Check if user enters correct number
-    check_given_number = True
-    while check_given_number:
+    while True: # Check if user enters correct number
 
         # Check and get user's given number
         print("\nEnter database list number:", end=' ')
@@ -67,16 +63,14 @@ def retrieve_db(rdb_client, rdb_db_list):
         if db_list_num == 0:
             print("Wrong number! again plz!")
             continue
-        if db_list_num in range((len(rdb_db_list)+1)):
-            check_given_number = False
-            break
+        if db_list_num in range((len(rdb_db_list)+1)): # if number is in the range
+            break # break from loop
         else:
             print("Wrong number! plz enter a number in a range of 1 to ", len(rdb_db_list))
     
-    print(rdb_db_list[(db_list_num-1)])
-    choosen_db = rdb_db_list[(db_list_num-1)]
-    retrieved_db = rdb_client[choosen_db]
-
+    print(rdb_db_list[(db_list_num-1)]) # show choosen database from list
+    choosen_db = rdb_db_list[(db_list_num-1)] # choose from database list
+    retrieved_db = rdb_client[choosen_db] # return and store choosen database 
     return retrieved_db
 
 
