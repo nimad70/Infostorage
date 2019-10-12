@@ -3,7 +3,7 @@
 from db import connect_db
 import datetime
 from account import get_info
-from db_collections import make_collection
+from db_collections import make_collection, retrieve_data
 from regcheck import digit_check
 
 
@@ -30,7 +30,7 @@ while check_to_continue_retrieve_import:
             # If there is data in database
             else:
                 print(answer_retrieve_import_end)
-                # retrieve_data(db)
+                retrieve_data(db)
                 break
 
         elif answer_retrieve_import_end == 'i': # Import data into database
