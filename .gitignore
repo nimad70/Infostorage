@@ -1,6 +1,5 @@
 /.vscode
 /src/__pycache__
-/src/mongodb_using_MongoEngine_test.py
-/src/mongodb_using_pymongo_test.py
+/src/temp
 /to-do-list.txt
 /src/tempCodeRunnerFile.py
