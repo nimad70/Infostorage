@@ -1,10 +1,12 @@
 # Author: Nima Daryabar aka nmdr
 # Storing applications username and password
-from db import connect_db
 import datetime
-from account import get_info
-from db_collections import make_collection, retrieve_data
-from regcheck import digit_check
+
+from src.accounts.account import get_info
+from src.database.db import connect_db
+from src.database.db_collections import make_collection
+from src.database.db_collections import retrieve_data
+from src.validation.regcheck import digit_check
 
 
 # connect to database or create one
