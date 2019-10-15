@@ -2,7 +2,9 @@
 # Making a database using pymongo
 from pymongo import MongoClient
 import re
-from regcheck import *
+
+from src.validation.regcheck import check_only_letters
+from src.validation.regcheck import digit_check
 
 
 # Show databases list
