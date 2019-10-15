@@ -1,5 +1,8 @@
 /.vscode
 /src/__pycache__
+/src/accounts/__pycache__
+/src/database/__pycache__
+/src/validation/__pycache__
 /src/temp
 /to-do-list.txt
 /src/tempCodeRunnerFile.py
